@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.33026.149
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g_Stock", "g_Stock\g_Stock.csproj", "{D471CC99-D087-432B-BBE3-EB02016D5C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{181AB9CF-83CA-492F-B668-0B9A831C1BA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTools", "iTools\iTools.csproj", "{854DC82D-70CA-49F0-990F-5A132B3481D4}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D471CC99-D087-432B-BBE3-EB02016D5C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D471CC99-D087-432B-BBE3-EB02016D5C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D471CC99-D087-432B-BBE3-EB02016D5C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D471CC99-D087-432B-BBE3-EB02016D5C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181AB9CF-83CA-492F-B668-0B9A831C1BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181AB9CF-83CA-492F-B668-0B9A831C1BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181AB9CF-83CA-492F-B668-0B9A831C1BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181AB9CF-83CA-492F-B668-0B9A831C1BA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854DC82D-70CA-49F0-990F-5A132B3481D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854DC82D-70CA-49F0-990F-5A132B3481D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854DC82D-70CA-49F0-990F-5A132B3481D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854DC82D-70CA-49F0-990F-5A132B3481D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
