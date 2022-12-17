@@ -1,4 +1,5 @@
 ﻿using g_Stock.Master;
+using g_Stock.PL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace g_Stock
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmL());
+            Application.Run(new frmFamille());
         }
     }
 }

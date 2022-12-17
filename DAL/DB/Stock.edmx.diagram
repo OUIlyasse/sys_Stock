@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb71d19d2cee40149462aa9ff30808a2" Name="Diagram1">
+        <EntityTypeShape EntityType="g_StockModel.Action" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Armoire" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Article_CodeBarre" Width="1.5" PointX="9.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Article_Info" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Article_Photo" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Article_Reference" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.BL" Width="1.5" PointX="9.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.BL_Article" Width="1.5" PointX="12" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Emplacement" Width="1.5" PointX="9.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Famille" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Fournisseur" Width="1.5" PointX="7.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Magasin" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Mouvement" Width="1.5" PointX="14.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Profil" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Rayonnage" Width="1.5" PointX="7.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Service" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Unite" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Unite_Mesure" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Unite_Type" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="g_StockModel.Utilisateur" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="g_StockModel.FK_Article_CodeBarre_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Bon_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Mouvement_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Armoire" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_CodeBarre_Article_Reference" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_CodeBarre" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Famille" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Photo_Article_Info" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Unite_Mesure" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Unite_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Info" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Reference_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Reference" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Reference" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_BL_Article_BL" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Bon_Fournisseur" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Bon_Unite" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Mouvement_BL_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Magasin" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Rayonnage" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Mesure" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Profil" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="g_StockModel.FK_Unite_Type_Unite_Mesure" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

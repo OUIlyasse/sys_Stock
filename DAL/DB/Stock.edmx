@@ -1,0 +1,1764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="g_StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="act_ID" />
+          </Key>
+          <Property Name="act_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="act_Nom" Type="nvarchar" MaxLength="350" />
+          <Property Name="act_Description" Type="nvarchar(max)" />
+          <Property Name="act_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Armoire">
+          <Key>
+            <PropertyRef Name="arm_ID" />
+          </Key>
+          <Property Name="arm_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arm_Nom" Type="nvarchar" MaxLength="350" />
+          <Property Name="arm_Description" Type="nvarchar(max)" />
+          <Property Name="arm_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Article_CodeBarre">
+          <Key>
+            <PropertyRef Name="cb_ID" />
+          </Key>
+          <Property Name="cb_ID" Type="int" Nullable="false" />
+          <Property Name="cb_Date" Type="date" />
+          <Property Name="cb_Designation" Type="nvarchar" MaxLength="500" />
+          <Property Name="ref_ID" Type="int" />
+          <Property Name="act_ID" Type="int" />
+          <Property Name="cb_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Article_Info">
+          <Key>
+            <PropertyRef Name="art_ID" />
+          </Key>
+          <Property Name="art_ID" Type="int" Nullable="false" />
+          <Property Name="art_Designatiion" Type="nvarchar" MaxLength="500" />
+          <Property Name="art_Description" Type="nvarchar(max)" />
+          <Property Name="svc_ID" Type="int" />
+          <Property Name="fam_ID" Type="int" />
+          <Property Name="unit_ID" Type="int" />
+          <Property Name="unit_M_ID" Type="int" />
+          <Property Name="art_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Article_Photo">
+          <Key>
+            <PropertyRef Name="pho_ID" />
+          </Key>
+          <Property Name="pho_ID" Type="int" Nullable="false" />
+          <Property Name="pho_Path" Type="nvarchar(max)" />
+          <Property Name="pho_Nom" Type="nvarchar(max)" />
+          <Property Name="pho_Extension" Type="nchar" MaxLength="10" />
+          <Property Name="art_ID" Type="int" />
+          <Property Name="pho_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Article_Reference">
+          <Key>
+            <PropertyRef Name="ref_ID" />
+          </Key>
+          <Property Name="ref_ID" Type="int" Nullable="false" />
+          <Property Name="art_ID" Type="int" />
+          <Property Name="ref_reference" Type="nvarchar" MaxLength="500" />
+          <Property Name="ref_Checked" Type="bit" />
+          <Property Name="ref_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="BL">
+          <Key>
+            <PropertyRef Name="bl_ID" />
+          </Key>
+          <Property Name="bl_ID" Type="int" Nullable="false" />
+          <Property Name="bl_Date" Type="date" />
+          <Property Name="bl_Reference" Type="nvarchar(max)" />
+          <Property Name="frns_ID" Type="int" />
+          <Property Name="unt_ID" Type="int" />
+          <Property Name="act_ID" Type="int" />
+          <Property Name="bl_Description" Type="nvarchar(max)" />
+          <Property Name="bl_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="BL_Article">
+          <Key>
+            <PropertyRef Name="bl_A_ID" />
+          </Key>
+          <Property Name="bl_A_ID" Type="int" Nullable="false" />
+          <Property Name="bl_A_Date" Type="date" />
+          <Property Name="bl_Qte_Demandee" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="bl_Qte_Livree" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="bl_Qte_Manque" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="bl_ID" Type="int" />
+          <Property Name="art_ID" Type="int" />
+          <Property Name="ref_ID" Type="int" />
+          <Property Name="cb_ID" Type="int" />
+          <Property Name="bl_A_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Emplacement">
+          <Key>
+            <PropertyRef Name="eplc_ID" />
+          </Key>
+          <Property Name="eplc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eplc_Date" Type="date" />
+          <Property Name="art_ID" Type="int" />
+          <Property Name="ref_ID" Type="int" />
+          <Property Name="arm_ID" Type="int" />
+          <Property Name="rayo_ID" Type="int" />
+          <Property Name="mags_ID" Type="int" />
+          <Property Name="eplc_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Famille">
+          <Key>
+            <PropertyRef Name="fam_ID" />
+          </Key>
+          <Property Name="fam_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fam_Nom" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="fam_Descripction" Type="nvarchar(max)" />
+          <Property Name="fam_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="frns_ID" />
+          </Key>
+          <Property Name="frns_ID" Type="int" Nullable="false" />
+          <Property Name="frns_Nom" Type="nvarchar(max)" />
+          <Property Name="frns_Adresse" Type="nvarchar(max)" />
+          <Property Name="frns_Adresse2" Type="nvarchar(max)" />
+          <Property Name="frns_Code_Postal" Type="nvarchar(max)" />
+          <Property Name="frns_Ville" Type="nvarchar(max)" />
+          <Property Name="frns_Email" Type="nvarchar(max)" />
+          <Property Name="frns_GSM" Type="nvarchar(max)" />
+          <Property Name="frns_GSM2" Type="nvarchar(max)" />
+          <Property Name="frns_Fixe1" Type="nvarchar(max)" />
+          <Property Name="frns_Fixe2" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Magasin">
+          <Key>
+            <PropertyRef Name="mags_ID" />
+          </Key>
+          <Property Name="mags_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mags_Magasin" Type="nvarchar" MaxLength="250" />
+          <Property Name="mags_Ville" Type="nvarchar(max)" />
+          <Property Name="mags_Description" Type="nvarchar(max)" />
+          <Property Name="mags_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Mouvement">
+          <Key>
+            <PropertyRef Name="mvt_ID" />
+          </Key>
+          <Property Name="mvt_ID" Type="int" Nullable="false" />
+          <Property Name="mvt_Date" Type="date" />
+          <Property Name="mvt_Doc_Refference" Type="nvarchar(max)" />
+          <Property Name="act_ID" Type="int" />
+          <Property Name="unit_M_ID" Type="int" />
+          <Property Name="unit_ID" Type="int" />
+          <Property Name="bl_A_ID" Type="int" />
+          <Property Name="mvt_Obsrvation" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Profil">
+          <Key>
+            <PropertyRef Name="prof_ID" />
+          </Key>
+          <Property Name="prof_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prof_Nom" Type="nvarchar" MaxLength="250" />
+          <Property Name="prof_Description" Type="nvarchar(max)" />
+          <Property Name="prof_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Rayonnage">
+          <Key>
+            <PropertyRef Name="rayo_ID" />
+          </Key>
+          <Property Name="rayo_ID" Type="int" Nullable="false" />
+          <Property Name="rayo_Nom" Type="nvarchar" MaxLength="200" />
+          <Property Name="rayo_Description" Type="nvarchar(max)" />
+          <Property Name="arm_ID" Type="int" />
+          <Property Name="rayo_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="svc_ID" />
+          </Key>
+          <Property Name="svc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="svc_Nom" Type="nvarchar" MaxLength="250" />
+          <Property Name="svc_description" Type="nvarchar(max)" />
+          <Property Name="svc_Date" Type="date" />
+          <Property Name="svc_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Unite">
+          <Key>
+            <PropertyRef Name="unt_ID" />
+          </Key>
+          <Property Name="unt_ID" Type="int" Nullable="false" />
+          <Property Name="unt_Unite" Type="nvarchar(max)" />
+          <Property Name="unt_Ville" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Unite_Mesure">
+          <Key>
+            <PropertyRef Name="unit_M_ID" />
+          </Key>
+          <Property Name="unit_M_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit_M_Nom" Type="nvarchar" MaxLength="350" />
+          <Property Name="unit_M_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Unite_Type">
+          <Key>
+            <PropertyRef Name="unit_ID" />
+          </Key>
+          <Property Name="unit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit_Nom" Type="nvarchar" MaxLength="50" />
+          <Property Name="unit_M_ID" Type="int" />
+          <Property Name="unit_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="util_ID" />
+          </Key>
+          <Property Name="util_ID" Type="int" Nullable="false" />
+          <Property Name="util_Nom" Type="nvarchar(max)" />
+          <Property Name="util_Date" Type="nvarchar(max)" />
+          <Property Name="util_Identifiant" Type="nvarchar(max)" />
+          <Property Name="util_MotPasse" Type="nvarchar(max)" />
+          <Property Name="svc_ID" Type="int" />
+          <Property Name="prof_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Article_CodeBarre_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="Article_CodeBarre">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_CodeBarre_Article_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="Article_CodeBarre">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Famille">
+          <End Role="Famille" Type="Self.Famille" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Famille">
+              <PropertyRef Name="fam_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="fam_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Photo_Article_Info">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Article_Photo" Type="Self.Article_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Article_Photo">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="svc_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="svc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Unite_Type">
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Type">
+              <PropertyRef Name="unit_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="unit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_CodeBarre">
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_CodeBarre">
+              <PropertyRef Name="cb_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="cb_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_Info">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_BL">
+          <End Role="BL" Type="Self.BL" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BL">
+              <PropertyRef Name="bl_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="bl_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Fournisseur">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="frns_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="frns_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Unite">
+          <End Role="Unite" Type="Self.Unite" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite">
+              <PropertyRef Name="unt_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="unt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Armoire">
+          <End Role="Armoire" Type="Self.Armoire" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armoire">
+              <PropertyRef Name="arm_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="arm_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Article">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Magasin">
+          <End Role="Magasin" Type="Self.Magasin" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magasin">
+              <PropertyRef Name="mags_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="mags_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Rayonnage">
+          <End Role="Rayonnage" Type="Self.Rayonnage" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayonnage">
+              <PropertyRef Name="rayo_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="rayo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_BL_Article">
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BL_Article">
+              <PropertyRef Name="bl_A_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="bl_A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Unite_Type">
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Type">
+              <PropertyRef Name="unit_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="unit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Article">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Article_Reference">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unite_Type_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Unite_Type">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Profil">
+          <End Role="Profil" Type="Self.Profil" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil">
+              <PropertyRef Name="prof_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="prof_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="svc_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="svc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Delete_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Famille_Provisoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Return_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Famille_By_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Select_Famille_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Update_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+          <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="g_StockModelStoreContainer">
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Armoire" EntityType="Self.Armoire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article_CodeBarre" EntityType="Self.Article_CodeBarre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article_Info" EntityType="Self.Article_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article_Photo" EntityType="Self.Article_Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article_Reference" EntityType="Self.Article_Reference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BL" EntityType="Self.BL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BL_Article" EntityType="Self.BL_Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emplacement" EntityType="Self.Emplacement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Famille" EntityType="Self.Famille" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magasin" EntityType="Self.Magasin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mouvement" EntityType="Self.Mouvement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profil" EntityType="Self.Profil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rayonnage" EntityType="Self.Rayonnage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unite" EntityType="Self.Unite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unite_Mesure" EntityType="Self.Unite_Mesure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unite_Type" EntityType="Self.Unite_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_CodeBarre_Action" Association="Self.FK_Article_CodeBarre_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_CodeBarre_Article_Reference" Association="Self.FK_Article_CodeBarre_Article_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Famille" Association="Self.FK_Article_Famille">
+            <End Role="Famille" EntitySet="Famille" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Photo_Article_Info" Association="Self.FK_Article_Photo_Article_Info">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Article_Photo" EntitySet="Article_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Service" Association="Self.FK_Article_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Unite_Mesure" Association="Self.FK_Article_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Unite_Type" Association="Self.FK_Article_Unite_Type">
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_CodeBarre" Association="Self.FK_BL_Article_Article_CodeBarre">
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_Info" Association="Self.FK_BL_Article_Article_Info">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_Reference" Association="Self.FK_BL_Article_Article_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_BL" Association="Self.FK_BL_Article_BL">
+            <End Role="BL" EntitySet="BL" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Action" Association="Self.FK_Bon_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Fournisseur" Association="Self.FK_Bon_Fournisseur">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Unite" Association="Self.FK_Bon_Unite">
+            <End Role="Unite" EntitySet="Unite" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Armoire" Association="Self.FK_Emplacement_Armoire">
+            <End Role="Armoire" EntitySet="Armoire" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Article" Association="Self.FK_Emplacement_Article">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Magasin" Association="Self.FK_Emplacement_Magasin">
+            <End Role="Magasin" EntitySet="Magasin" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Rayonnage" Association="Self.FK_Emplacement_Rayonnage">
+            <End Role="Rayonnage" EntitySet="Rayonnage" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Reference" Association="Self.FK_Emplacement_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Action" Association="Self.FK_Mouvement_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_BL_Article" Association="Self.FK_Mouvement_BL_Article">
+            <End Role="BL_Article" EntitySet="BL_Article" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Unite_Mesure" Association="Self.FK_Mouvement_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Unite_Type" Association="Self.FK_Mouvement_Unite_Type">
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Article" Association="Self.FK_Reference_Article">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unite_Type_Unite_Mesure" Association="Self.FK_Unite_Type_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Profil" Association="Self.FK_Utilisateur_Profil">
+            <End Role="Profil" EntitySet="Profil" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Service" Association="Self.FK_Utilisateur_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="g_StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="act_ID" />
+          </Key>
+          <Property Name="act_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="act_Nom" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="act_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="act_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_CodeBarre" Relationship="Self.FK_Article_CodeBarre_Action" FromRole="Action" ToRole="Article_CodeBarre" />
+          <NavigationProperty Name="BL" Relationship="Self.FK_Bon_Action" FromRole="Action" ToRole="BL" />
+          <NavigationProperty Name="Mouvement" Relationship="Self.FK_Mouvement_Action" FromRole="Action" ToRole="Mouvement" />
+        </EntityType>
+        <EntityType Name="Armoire">
+          <Key>
+            <PropertyRef Name="arm_ID" />
+          </Key>
+          <Property Name="arm_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arm_Nom" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="arm_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="arm_Status" Type="Boolean" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Armoire" FromRole="Armoire" ToRole="Emplacement" />
+        </EntityType>
+        <EntityType Name="Article_CodeBarre">
+          <Key>
+            <PropertyRef Name="cb_ID" />
+          </Key>
+          <Property Name="cb_ID" Type="Int32" Nullable="false" />
+          <Property Name="cb_Date" Type="DateTime" Precision="0" />
+          <Property Name="cb_Designation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ref_ID" Type="Int32" />
+          <Property Name="act_ID" Type="Int32" />
+          <Property Name="cb_Status" Type="Boolean" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_Article_CodeBarre_Action" FromRole="Article_CodeBarre" ToRole="Action" />
+          <NavigationProperty Name="Article_Reference" Relationship="Self.FK_Article_CodeBarre_Article_Reference" FromRole="Article_CodeBarre" ToRole="Article_Reference" />
+          <NavigationProperty Name="BL_Article" Relationship="Self.FK_BL_Article_Article_CodeBarre" FromRole="Article_CodeBarre" ToRole="BL_Article" />
+        </EntityType>
+        <EntityType Name="Article_Info">
+          <Key>
+            <PropertyRef Name="art_ID" />
+          </Key>
+          <Property Name="art_ID" Type="Int32" Nullable="false" />
+          <Property Name="art_Designatiion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="art_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="svc_ID" Type="Int32" />
+          <Property Name="fam_ID" Type="Int32" />
+          <Property Name="unit_ID" Type="Int32" />
+          <Property Name="unit_M_ID" Type="Int32" />
+          <Property Name="art_Status" Type="Boolean" />
+          <NavigationProperty Name="Famille" Relationship="Self.FK_Article_Famille" FromRole="Article_Info" ToRole="Famille" />
+          <NavigationProperty Name="Article_Photo" Relationship="Self.FK_Article_Photo_Article_Info" FromRole="Article_Info" ToRole="Article_Photo" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Article_Service" FromRole="Article_Info" ToRole="Service" />
+          <NavigationProperty Name="Unite_Mesure" Relationship="Self.FK_Article_Unite_Mesure" FromRole="Article_Info" ToRole="Unite_Mesure" />
+          <NavigationProperty Name="Unite_Type" Relationship="Self.FK_Article_Unite_Type" FromRole="Article_Info" ToRole="Unite_Type" />
+          <NavigationProperty Name="BL_Article" Relationship="Self.FK_BL_Article_Article_Info" FromRole="Article_Info" ToRole="BL_Article" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Article" FromRole="Article_Info" ToRole="Emplacement" />
+          <NavigationProperty Name="Article_Reference" Relationship="Self.FK_Reference_Article" FromRole="Article_Info" ToRole="Article_Reference" />
+        </EntityType>
+        <EntityType Name="Article_Photo">
+          <Key>
+            <PropertyRef Name="pho_ID" />
+          </Key>
+          <Property Name="pho_ID" Type="Int32" Nullable="false" />
+          <Property Name="pho_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pho_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pho_Extension" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="art_ID" Type="Int32" />
+          <Property Name="pho_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Photo_Article_Info" FromRole="Article_Photo" ToRole="Article_Info" />
+        </EntityType>
+        <EntityType Name="Article_Reference">
+          <Key>
+            <PropertyRef Name="ref_ID" />
+          </Key>
+          <Property Name="ref_ID" Type="Int32" Nullable="false" />
+          <Property Name="art_ID" Type="Int32" />
+          <Property Name="ref_reference" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ref_Checked" Type="Boolean" />
+          <Property Name="ref_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_CodeBarre" Relationship="Self.FK_Article_CodeBarre_Article_Reference" FromRole="Article_Reference" ToRole="Article_CodeBarre" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Reference_Article" FromRole="Article_Reference" ToRole="Article_Info" />
+          <NavigationProperty Name="BL_Article" Relationship="Self.FK_BL_Article_Article_Reference" FromRole="Article_Reference" ToRole="BL_Article" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Reference" FromRole="Article_Reference" ToRole="Emplacement" />
+        </EntityType>
+        <EntityType Name="BL">
+          <Key>
+            <PropertyRef Name="bl_ID" />
+          </Key>
+          <Property Name="bl_ID" Type="Int32" Nullable="false" />
+          <Property Name="bl_Date" Type="DateTime" Precision="0" />
+          <Property Name="bl_Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_ID" Type="Int32" />
+          <Property Name="unt_ID" Type="Int32" />
+          <Property Name="act_ID" Type="Int32" />
+          <Property Name="bl_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bl_Status" Type="Boolean" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_Bon_Action" FromRole="BL" ToRole="Action" />
+          <NavigationProperty Name="BL_Article" Relationship="Self.FK_BL_Article_BL" FromRole="BL" ToRole="BL_Article" />
+          <NavigationProperty Name="Fournisseur" Relationship="Self.FK_Bon_Fournisseur" FromRole="BL" ToRole="Fournisseur" />
+          <NavigationProperty Name="Unite" Relationship="Self.FK_Bon_Unite" FromRole="BL" ToRole="Unite" />
+        </EntityType>
+        <EntityType Name="BL_Article">
+          <Key>
+            <PropertyRef Name="bl_A_ID" />
+          </Key>
+          <Property Name="bl_A_ID" Type="Int32" Nullable="false" />
+          <Property Name="bl_A_Date" Type="DateTime" Precision="0" />
+          <Property Name="bl_Qte_Demandee" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="bl_Qte_Livree" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="bl_Qte_Manque" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="bl_ID" Type="Int32" />
+          <Property Name="art_ID" Type="Int32" />
+          <Property Name="ref_ID" Type="Int32" />
+          <Property Name="cb_ID" Type="Int32" />
+          <Property Name="bl_A_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_CodeBarre" Relationship="Self.FK_BL_Article_Article_CodeBarre" FromRole="BL_Article" ToRole="Article_CodeBarre" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_BL_Article_Article_Info" FromRole="BL_Article" ToRole="Article_Info" />
+          <NavigationProperty Name="Article_Reference" Relationship="Self.FK_BL_Article_Article_Reference" FromRole="BL_Article" ToRole="Article_Reference" />
+          <NavigationProperty Name="BL" Relationship="Self.FK_BL_Article_BL" FromRole="BL_Article" ToRole="BL" />
+          <NavigationProperty Name="Mouvement" Relationship="Self.FK_Mouvement_BL_Article" FromRole="BL_Article" ToRole="Mouvement" />
+        </EntityType>
+        <EntityType Name="Emplacement">
+          <Key>
+            <PropertyRef Name="eplc_ID" />
+          </Key>
+          <Property Name="eplc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eplc_Date" Type="DateTime" Precision="0" />
+          <Property Name="art_ID" Type="Int32" />
+          <Property Name="ref_ID" Type="Int32" />
+          <Property Name="arm_ID" Type="Int32" />
+          <Property Name="rayo_ID" Type="Int32" />
+          <Property Name="mags_ID" Type="Int32" />
+          <Property Name="eplc_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Armoire" Relationship="Self.FK_Emplacement_Armoire" FromRole="Emplacement" ToRole="Armoire" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Emplacement_Article" FromRole="Emplacement" ToRole="Article_Info" />
+          <NavigationProperty Name="Article_Reference" Relationship="Self.FK_Emplacement_Reference" FromRole="Emplacement" ToRole="Article_Reference" />
+          <NavigationProperty Name="Magasin" Relationship="Self.FK_Emplacement_Magasin" FromRole="Emplacement" ToRole="Magasin" />
+          <NavigationProperty Name="Rayonnage" Relationship="Self.FK_Emplacement_Rayonnage" FromRole="Emplacement" ToRole="Rayonnage" />
+        </EntityType>
+        <EntityType Name="Famille">
+          <Key>
+            <PropertyRef Name="fam_ID" />
+          </Key>
+          <Property Name="fam_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fam_Nom" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fam_Descripction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fam_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Famille" FromRole="Famille" ToRole="Article_Info" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="frns_ID" />
+          </Key>
+          <Property Name="frns_ID" Type="Int32" Nullable="false" />
+          <Property Name="frns_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Adresse2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Code_Postal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_GSM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_GSM2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Fixe1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="frns_Fixe2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BL" Relationship="Self.FK_Bon_Fournisseur" FromRole="Fournisseur" ToRole="BL" />
+        </EntityType>
+        <EntityType Name="Magasin">
+          <Key>
+            <PropertyRef Name="mags_ID" />
+          </Key>
+          <Property Name="mags_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mags_Magasin" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="mags_Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mags_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mags_Status" Type="Boolean" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Magasin" FromRole="Magasin" ToRole="Emplacement" />
+        </EntityType>
+        <EntityType Name="Mouvement">
+          <Key>
+            <PropertyRef Name="mvt_ID" />
+          </Key>
+          <Property Name="mvt_ID" Type="Int32" Nullable="false" />
+          <Property Name="mvt_Date" Type="DateTime" Precision="0" />
+          <Property Name="mvt_Doc_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="act_ID" Type="Int32" />
+          <Property Name="unit_M_ID" Type="Int32" />
+          <Property Name="unit_ID" Type="Int32" />
+          <Property Name="bl_A_ID" Type="Int32" />
+          <Property Name="mvt_Obsrvation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_Mouvement_Action" FromRole="Mouvement" ToRole="Action" />
+          <NavigationProperty Name="BL_Article" Relationship="Self.FK_Mouvement_BL_Article" FromRole="Mouvement" ToRole="BL_Article" />
+          <NavigationProperty Name="Unite_Mesure" Relationship="Self.FK_Mouvement_Unite_Mesure" FromRole="Mouvement" ToRole="Unite_Mesure" />
+          <NavigationProperty Name="Unite_Type" Relationship="Self.FK_Mouvement_Unite_Type" FromRole="Mouvement" ToRole="Unite_Type" />
+        </EntityType>
+        <EntityType Name="Profil">
+          <Key>
+            <PropertyRef Name="prof_ID" />
+          </Key>
+          <Property Name="prof_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prof_Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="prof_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="prof_Status" Type="Boolean" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Utilisateur_Profil" FromRole="Profil" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Rayonnage">
+          <Key>
+            <PropertyRef Name="rayo_ID" />
+          </Key>
+          <Property Name="rayo_ID" Type="Int32" Nullable="false" />
+          <Property Name="rayo_Nom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rayo_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="arm_ID" Type="Int32" />
+          <Property Name="rayo_Status" Type="Boolean" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Rayonnage" FromRole="Rayonnage" ToRole="Emplacement" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="svc_ID" />
+          </Key>
+          <Property Name="svc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="svc_Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="svc_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="svc_Date" Type="DateTime" Precision="0" />
+          <Property Name="svc_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Service" FromRole="Service" ToRole="Article_Info" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Utilisateur_Service" FromRole="Service" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Unite">
+          <Key>
+            <PropertyRef Name="unt_ID" />
+          </Key>
+          <Property Name="unt_ID" Type="Int32" Nullable="false" />
+          <Property Name="unt_Unite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="unt_Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BL" Relationship="Self.FK_Bon_Unite" FromRole="Unite" ToRole="BL" />
+        </EntityType>
+        <EntityType Name="Unite_Mesure">
+          <Key>
+            <PropertyRef Name="unit_M_ID" />
+          </Key>
+          <Property Name="unit_M_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit_M_Nom" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="unit_M_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Unite_Mesure" FromRole="Unite_Mesure" ToRole="Article_Info" />
+          <NavigationProperty Name="Mouvement" Relationship="Self.FK_Mouvement_Unite_Mesure" FromRole="Unite_Mesure" ToRole="Mouvement" />
+          <NavigationProperty Name="Unite_Type" Relationship="Self.FK_Unite_Type_Unite_Mesure" FromRole="Unite_Mesure" ToRole="Unite_Type" />
+        </EntityType>
+        <EntityType Name="Unite_Type">
+          <Key>
+            <PropertyRef Name="unit_ID" />
+          </Key>
+          <Property Name="unit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit_Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="unit_M_ID" Type="Int32" />
+          <Property Name="unit_Status" Type="Boolean" />
+          <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Unite_Type" FromRole="Unite_Type" ToRole="Article_Info" />
+          <NavigationProperty Name="Mouvement" Relationship="Self.FK_Mouvement_Unite_Type" FromRole="Unite_Type" ToRole="Mouvement" />
+          <NavigationProperty Name="Unite_Mesure" Relationship="Self.FK_Unite_Type_Unite_Mesure" FromRole="Unite_Type" ToRole="Unite_Mesure" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="util_ID" />
+          </Key>
+          <Property Name="util_ID" Type="Int32" Nullable="false" />
+          <Property Name="util_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="util_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="util_Identifiant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="util_MotPasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="svc_ID" Type="Int32" />
+          <Property Name="prof_ID" Type="Int32" />
+          <NavigationProperty Name="Profil" Relationship="Self.FK_Utilisateur_Profil" FromRole="Utilisateur" ToRole="Profil" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Utilisateur_Service" FromRole="Utilisateur" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_Article_CodeBarre_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="Article_CodeBarre">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="act_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="act_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Armoire">
+          <End Role="Armoire" Type="Self.Armoire" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armoire">
+              <PropertyRef Name="arm_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="arm_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_CodeBarre_Article_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="Article_CodeBarre">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_CodeBarre">
+          <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_CodeBarre">
+              <PropertyRef Name="cb_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="cb_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Famille">
+          <End Role="Famille" Type="Self.Famille" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Famille">
+              <PropertyRef Name="fam_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="fam_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Photo_Article_Info">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Article_Photo" Type="Self.Article_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Article_Photo">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="svc_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="svc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Unite_Type">
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="0..1" />
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Type">
+              <PropertyRef Name="unit_ID" />
+            </Principal>
+            <Dependent Role="Article_Info">
+              <PropertyRef Name="unit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_Info">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Article">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Article">
+          <End Role="Article_Info" Type="Self.Article_Info" Multiplicity="0..1" />
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Info">
+              <PropertyRef Name="art_ID" />
+            </Principal>
+            <Dependent Role="Article_Reference">
+              <PropertyRef Name="art_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_Article_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Reference">
+          <End Role="Article_Reference" Type="Self.Article_Reference" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article_Reference">
+              <PropertyRef Name="ref_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="ref_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BL_Article_BL">
+          <End Role="BL" Type="Self.BL" Multiplicity="0..1" />
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BL">
+              <PropertyRef Name="bl_ID" />
+            </Principal>
+            <Dependent Role="BL_Article">
+              <PropertyRef Name="bl_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Fournisseur">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="frns_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="frns_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bon_Unite">
+          <End Role="Unite" Type="Self.Unite" Multiplicity="0..1" />
+          <End Role="BL" Type="Self.BL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite">
+              <PropertyRef Name="unt_ID" />
+            </Principal>
+            <Dependent Role="BL">
+              <PropertyRef Name="unt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_BL_Article">
+          <End Role="BL_Article" Type="Self.BL_Article" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BL_Article">
+              <PropertyRef Name="bl_A_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="bl_A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Magasin">
+          <End Role="Magasin" Type="Self.Magasin" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magasin">
+              <PropertyRef Name="mags_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="mags_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Rayonnage">
+          <End Role="Rayonnage" Type="Self.Rayonnage" Multiplicity="0..1" />
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayonnage">
+              <PropertyRef Name="rayo_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="rayo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mouvement_Unite_Type">
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="0..1" />
+          <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Type">
+              <PropertyRef Name="unit_ID" />
+            </Principal>
+            <Dependent Role="Mouvement">
+              <PropertyRef Name="unit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Profil">
+          <End Role="Profil" Type="Self.Profil" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil">
+              <PropertyRef Name="prof_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="prof_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="svc_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="svc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unite_Type_Unite_Mesure">
+          <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
+          <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unite_Mesure">
+              <PropertyRef Name="unit_M_ID" />
+            </Principal>
+            <Dependent Role="Unite_Type">
+              <PropertyRef Name="unit_M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="g_StockEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Action" EntityType="Self.Action" />
+          <EntitySet Name="Armoire" EntityType="Self.Armoire" />
+          <EntitySet Name="Article_CodeBarre" EntityType="Self.Article_CodeBarre" />
+          <EntitySet Name="Article_Info" EntityType="Self.Article_Info" />
+          <EntitySet Name="Article_Photo" EntityType="Self.Article_Photo" />
+          <EntitySet Name="Article_Reference" EntityType="Self.Article_Reference" />
+          <EntitySet Name="BL" EntityType="Self.BL" />
+          <EntitySet Name="BL_Article" EntityType="Self.BL_Article" />
+          <EntitySet Name="Emplacement" EntityType="Self.Emplacement" />
+          <EntitySet Name="Famille" EntityType="Self.Famille" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" />
+          <EntitySet Name="Magasin" EntityType="Self.Magasin" />
+          <EntitySet Name="Mouvement" EntityType="Self.Mouvement" />
+          <EntitySet Name="Profil" EntityType="Self.Profil" />
+          <EntitySet Name="Rayonnage" EntityType="Self.Rayonnage" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="Unite" EntityType="Self.Unite" />
+          <EntitySet Name="Unite_Mesure" EntityType="Self.Unite_Mesure" />
+          <EntitySet Name="Unite_Type" EntityType="Self.Unite_Type" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+          <AssociationSet Name="FK_Article_CodeBarre_Action" Association="Self.FK_Article_CodeBarre_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Action" Association="Self.FK_Bon_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Action" Association="Self.FK_Mouvement_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Armoire" Association="Self.FK_Emplacement_Armoire">
+            <End Role="Armoire" EntitySet="Armoire" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_CodeBarre_Article_Reference" Association="Self.FK_Article_CodeBarre_Article_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_CodeBarre" Association="Self.FK_BL_Article_Article_CodeBarre">
+            <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Famille" Association="Self.FK_Article_Famille">
+            <End Role="Famille" EntitySet="Famille" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Photo_Article_Info" Association="Self.FK_Article_Photo_Article_Info">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Article_Photo" EntitySet="Article_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Service" Association="Self.FK_Article_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Unite_Mesure" Association="Self.FK_Article_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Unite_Type" Association="Self.FK_Article_Unite_Type">
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+            <End Role="Article_Info" EntitySet="Article_Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_Info" Association="Self.FK_BL_Article_Article_Info">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Article" Association="Self.FK_Emplacement_Article">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Article" Association="Self.FK_Reference_Article">
+            <End Role="Article_Info" EntitySet="Article_Info" />
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_Article_Reference" Association="Self.FK_BL_Article_Article_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Reference" Association="Self.FK_Emplacement_Reference">
+            <End Role="Article_Reference" EntitySet="Article_Reference" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BL_Article_BL" Association="Self.FK_BL_Article_BL">
+            <End Role="BL" EntitySet="BL" />
+            <End Role="BL_Article" EntitySet="BL_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Fournisseur" Association="Self.FK_Bon_Fournisseur">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bon_Unite" Association="Self.FK_Bon_Unite">
+            <End Role="Unite" EntitySet="Unite" />
+            <End Role="BL" EntitySet="BL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_BL_Article" Association="Self.FK_Mouvement_BL_Article">
+            <End Role="BL_Article" EntitySet="BL_Article" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Magasin" Association="Self.FK_Emplacement_Magasin">
+            <End Role="Magasin" EntitySet="Magasin" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Rayonnage" Association="Self.FK_Emplacement_Rayonnage">
+            <End Role="Rayonnage" EntitySet="Rayonnage" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Unite_Mesure" Association="Self.FK_Mouvement_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mouvement_Unite_Type" Association="Self.FK_Mouvement_Unite_Type">
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+            <End Role="Mouvement" EntitySet="Mouvement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Profil" Association="Self.FK_Utilisateur_Profil">
+            <End Role="Profil" EntitySet="Profil" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Service" Association="Self.FK_Utilisateur_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unite_Type_Unite_Mesure" Association="Self.FK_Unite_Type_Unite_Mesure">
+            <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
+            <End Role="Unite_Type" EntitySet="Unite_Type" />
+          </AssociationSet>
+          <FunctionImport Name="Delete_Famille">
+          <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Famille">
+            <Parameter Name="fam_Nom" Mode="In" Type="String" />
+            <Parameter Name="fam_Descripction" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Famille">
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+            <Parameter Name="fam_Nom" Mode="In" Type="String" />
+            <Parameter Name="fam_Descripction" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Famille" ReturnType="Collection(g_StockModel.Select_Famille_Result)" />
+          <FunctionImport Name="Select_Famille_By_Famille" EntitySet="Famille" ReturnType="Collection(g_StockModel.Famille)">
+          <Parameter Name="fam_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Famille_By_ID" EntitySet="Famille" ReturnType="Collection(g_StockModel.Famille)">
+          <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Famille_Provisoire">
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Return_Famille">
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Select_Famille_Result">
+          <Property Type="Int32" Name="fam_ID" Nullable="false" />
+          <Property Type="String" Name="fam_Nom" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="fam_Descripction" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="g_StockModelStoreContainer" CdmEntityContainer="g_StockEntities">
+          <EntitySetMapping Name="Action">
+            <EntityTypeMapping TypeName="g_StockModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="act_ID" ColumnName="act_ID" />
+                <ScalarProperty Name="act_Nom" ColumnName="act_Nom" />
+                <ScalarProperty Name="act_Description" ColumnName="act_Description" />
+                <ScalarProperty Name="act_Status" ColumnName="act_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Armoire">
+            <EntityTypeMapping TypeName="g_StockModel.Armoire">
+              <MappingFragment StoreEntitySet="Armoire">
+                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
+                <ScalarProperty Name="arm_Nom" ColumnName="arm_Nom" />
+                <ScalarProperty Name="arm_Description" ColumnName="arm_Description" />
+                <ScalarProperty Name="arm_Status" ColumnName="arm_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article_CodeBarre">
+            <EntityTypeMapping TypeName="g_StockModel.Article_CodeBarre">
+              <MappingFragment StoreEntitySet="Article_CodeBarre">
+                <ScalarProperty Name="cb_ID" ColumnName="cb_ID" />
+                <ScalarProperty Name="cb_Date" ColumnName="cb_Date" />
+                <ScalarProperty Name="cb_Designation" ColumnName="cb_Designation" />
+                <ScalarProperty Name="ref_ID" ColumnName="ref_ID" />
+                <ScalarProperty Name="act_ID" ColumnName="act_ID" />
+                <ScalarProperty Name="cb_Status" ColumnName="cb_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article_Info">
+            <EntityTypeMapping TypeName="g_StockModel.Article_Info">
+              <MappingFragment StoreEntitySet="Article_Info">
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+                <ScalarProperty Name="art_Designatiion" ColumnName="art_Designatiion" />
+                <ScalarProperty Name="art_Description" ColumnName="art_Description" />
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="fam_ID" ColumnName="fam_ID" />
+                <ScalarProperty Name="unit_ID" ColumnName="unit_ID" />
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="art_Status" ColumnName="art_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article_Photo">
+            <EntityTypeMapping TypeName="g_StockModel.Article_Photo">
+              <MappingFragment StoreEntitySet="Article_Photo">
+                <ScalarProperty Name="pho_ID" ColumnName="pho_ID" />
+                <ScalarProperty Name="pho_Path" ColumnName="pho_Path" />
+                <ScalarProperty Name="pho_Nom" ColumnName="pho_Nom" />
+                <ScalarProperty Name="pho_Extension" ColumnName="pho_Extension" />
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+                <ScalarProperty Name="pho_Description" ColumnName="pho_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article_Reference">
+            <EntityTypeMapping TypeName="g_StockModel.Article_Reference">
+              <MappingFragment StoreEntitySet="Article_Reference">
+                <ScalarProperty Name="ref_ID" ColumnName="ref_ID" />
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+                <ScalarProperty Name="ref_reference" ColumnName="ref_reference" />
+                <ScalarProperty Name="ref_Checked" ColumnName="ref_Checked" />
+                <ScalarProperty Name="ref_Status" ColumnName="ref_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BL">
+            <EntityTypeMapping TypeName="g_StockModel.BL">
+              <MappingFragment StoreEntitySet="BL">
+                <ScalarProperty Name="bl_ID" ColumnName="bl_ID" />
+                <ScalarProperty Name="bl_Date" ColumnName="bl_Date" />
+                <ScalarProperty Name="bl_Reference" ColumnName="bl_Reference" />
+                <ScalarProperty Name="frns_ID" ColumnName="frns_ID" />
+                <ScalarProperty Name="unt_ID" ColumnName="unt_ID" />
+                <ScalarProperty Name="act_ID" ColumnName="act_ID" />
+                <ScalarProperty Name="bl_Description" ColumnName="bl_Description" />
+                <ScalarProperty Name="bl_Status" ColumnName="bl_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BL_Article">
+            <EntityTypeMapping TypeName="g_StockModel.BL_Article">
+              <MappingFragment StoreEntitySet="BL_Article">
+                <ScalarProperty Name="bl_A_ID" ColumnName="bl_A_ID" />
+                <ScalarProperty Name="bl_A_Date" ColumnName="bl_A_Date" />
+                <ScalarProperty Name="bl_Qte_Demandee" ColumnName="bl_Qte_Demandee" />
+                <ScalarProperty Name="bl_Qte_Livree" ColumnName="bl_Qte_Livree" />
+                <ScalarProperty Name="bl_Qte_Manque" ColumnName="bl_Qte_Manque" />
+                <ScalarProperty Name="bl_ID" ColumnName="bl_ID" />
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+                <ScalarProperty Name="ref_ID" ColumnName="ref_ID" />
+                <ScalarProperty Name="cb_ID" ColumnName="cb_ID" />
+                <ScalarProperty Name="bl_A_Status" ColumnName="bl_A_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emplacement">
+            <EntityTypeMapping TypeName="g_StockModel.Emplacement">
+              <MappingFragment StoreEntitySet="Emplacement">
+                <ScalarProperty Name="eplc_ID" ColumnName="eplc_ID" />
+                <ScalarProperty Name="eplc_Date" ColumnName="eplc_Date" />
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+                <ScalarProperty Name="ref_ID" ColumnName="ref_ID" />
+                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
+                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
+                <ScalarProperty Name="mags_ID" ColumnName="mags_ID" />
+                <ScalarProperty Name="eplc_Description" ColumnName="eplc_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Famille">
+            <EntityTypeMapping TypeName="g_StockModel.Famille">
+              <MappingFragment StoreEntitySet="Famille">
+                <ScalarProperty Name="fam_ID" ColumnName="fam_ID" />
+                <ScalarProperty Name="fam_Nom" ColumnName="fam_Nom" />
+                <ScalarProperty Name="fam_Descripction" ColumnName="fam_Descripction" />
+                <ScalarProperty Name="fam_Status" ColumnName="fam_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Famille">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Famille">
+                  <ScalarProperty Name="fam_ID" ParameterName="fam_ID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Famille">
+                  <ScalarProperty Name="fam_Descripction" ParameterName="fam_Descripction" Version="Current" />
+                  <ScalarProperty Name="fam_Nom" ParameterName="fam_Nom" Version="Current" />
+                  <ScalarProperty Name="fam_ID" ParameterName="fam_ID" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Famille">
+                  <ScalarProperty Name="fam_Descripction" ParameterName="fam_Descripction" />
+                  <ScalarProperty Name="fam_Nom" ParameterName="fam_Nom" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fournisseur">
+            <EntityTypeMapping TypeName="g_StockModel.Fournisseur">
+              <MappingFragment StoreEntitySet="Fournisseur">
+                <ScalarProperty Name="frns_ID" ColumnName="frns_ID" />
+                <ScalarProperty Name="frns_Nom" ColumnName="frns_Nom" />
+                <ScalarProperty Name="frns_Adresse" ColumnName="frns_Adresse" />
+                <ScalarProperty Name="frns_Adresse2" ColumnName="frns_Adresse2" />
+                <ScalarProperty Name="frns_Code_Postal" ColumnName="frns_Code_Postal" />
+                <ScalarProperty Name="frns_Ville" ColumnName="frns_Ville" />
+                <ScalarProperty Name="frns_Email" ColumnName="frns_Email" />
+                <ScalarProperty Name="frns_GSM" ColumnName="frns_GSM" />
+                <ScalarProperty Name="frns_GSM2" ColumnName="frns_GSM2" />
+                <ScalarProperty Name="frns_Fixe1" ColumnName="frns_Fixe1" />
+                <ScalarProperty Name="frns_Fixe2" ColumnName="frns_Fixe2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magasin">
+            <EntityTypeMapping TypeName="g_StockModel.Magasin">
+              <MappingFragment StoreEntitySet="Magasin">
+                <ScalarProperty Name="mags_ID" ColumnName="mags_ID" />
+                <ScalarProperty Name="mags_Magasin" ColumnName="mags_Magasin" />
+                <ScalarProperty Name="mags_Ville" ColumnName="mags_Ville" />
+                <ScalarProperty Name="mags_Description" ColumnName="mags_Description" />
+                <ScalarProperty Name="mags_Status" ColumnName="mags_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mouvement">
+            <EntityTypeMapping TypeName="g_StockModel.Mouvement">
+              <MappingFragment StoreEntitySet="Mouvement">
+                <ScalarProperty Name="mvt_ID" ColumnName="mvt_ID" />
+                <ScalarProperty Name="mvt_Date" ColumnName="mvt_Date" />
+                <ScalarProperty Name="mvt_Doc_Refference" ColumnName="mvt_Doc_Refference" />
+                <ScalarProperty Name="act_ID" ColumnName="act_ID" />
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="unit_ID" ColumnName="unit_ID" />
+                <ScalarProperty Name="bl_A_ID" ColumnName="bl_A_ID" />
+                <ScalarProperty Name="mvt_Obsrvation" ColumnName="mvt_Obsrvation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profil">
+            <EntityTypeMapping TypeName="g_StockModel.Profil">
+              <MappingFragment StoreEntitySet="Profil">
+                <ScalarProperty Name="prof_ID" ColumnName="prof_ID" />
+                <ScalarProperty Name="prof_Nom" ColumnName="prof_Nom" />
+                <ScalarProperty Name="prof_Description" ColumnName="prof_Description" />
+                <ScalarProperty Name="prof_Status" ColumnName="prof_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rayonnage">
+            <EntityTypeMapping TypeName="g_StockModel.Rayonnage">
+              <MappingFragment StoreEntitySet="Rayonnage">
+                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
+                <ScalarProperty Name="rayo_Nom" ColumnName="rayo_Nom" />
+                <ScalarProperty Name="rayo_Description" ColumnName="rayo_Description" />
+                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
+                <ScalarProperty Name="rayo_Status" ColumnName="rayo_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="g_StockModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
+                <ScalarProperty Name="svc_description" ColumnName="svc_description" />
+                <ScalarProperty Name="svc_Date" ColumnName="svc_Date" />
+                <ScalarProperty Name="svc_Status" ColumnName="svc_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unite">
+            <EntityTypeMapping TypeName="g_StockModel.Unite">
+              <MappingFragment StoreEntitySet="Unite">
+                <ScalarProperty Name="unt_ID" ColumnName="unt_ID" />
+                <ScalarProperty Name="unt_Unite" ColumnName="unt_Unite" />
+                <ScalarProperty Name="unt_Ville" ColumnName="unt_Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unite_Mesure">
+            <EntityTypeMapping TypeName="g_StockModel.Unite_Mesure">
+              <MappingFragment StoreEntitySet="Unite_Mesure">
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="unit_M_Nom" ColumnName="unit_M_Nom" />
+                <ScalarProperty Name="unit_M_Status" ColumnName="unit_M_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unite_Type">
+            <EntityTypeMapping TypeName="g_StockModel.Unite_Type">
+              <MappingFragment StoreEntitySet="Unite_Type">
+                <ScalarProperty Name="unit_ID" ColumnName="unit_ID" />
+                <ScalarProperty Name="unit_Nom" ColumnName="unit_Nom" />
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="unit_Status" ColumnName="unit_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="g_StockModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="util_ID" ColumnName="util_ID" />
+                <ScalarProperty Name="util_Nom" ColumnName="util_Nom" />
+                <ScalarProperty Name="util_Date" ColumnName="util_Date" />
+                <ScalarProperty Name="util_Identifiant" ColumnName="util_Identifiant" />
+                <ScalarProperty Name="util_MotPasse" ColumnName="util_MotPasse" />
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="prof_ID" ColumnName="prof_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Famille" FunctionName="g_StockModel.Store.Delete_Famille" />
+          <FunctionImportMapping FunctionImportName="Insert_Famille" FunctionName="g_StockModel.Store.Insert_Famille" />
+          <FunctionImportMapping FunctionImportName="Update_Famille" FunctionName="g_StockModel.Store.Update_Famille" />
+          <FunctionImportMapping FunctionImportName="Select_Famille" FunctionName="g_StockModel.Store.Select_Famille">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Famille_Result">
+                <ScalarProperty Name="fam_ID" ColumnName="fam_ID" />
+                <ScalarProperty Name="fam_Nom" ColumnName="fam_Nom" />
+                <ScalarProperty Name="fam_Descripction" ColumnName="fam_Descripction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_Famille_By_Famille" FunctionName="g_StockModel.Store.Select_Famille_By_Famille" />
+          <FunctionImportMapping FunctionImportName="Select_Famille_By_ID" FunctionName="g_StockModel.Store.Select_Famille_By_ID" />
+          <FunctionImportMapping FunctionImportName="Delete_Famille_Provisoire" FunctionName="g_StockModel.Store.Delete_Famille_Provisoire" />
+          <FunctionImportMapping FunctionImportName="Return_Famille" FunctionName="g_StockModel.Store.Return_Famille" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
