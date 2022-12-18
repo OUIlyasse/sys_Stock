@@ -102,6 +102,15 @@
     <Compile Include="DB\Select_Famille_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Select_Profil_By_ID_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Profil_By_Profil_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Profil_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Select_Service_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>

@@ -88,6 +88,12 @@
     <Compile Include="PL\frmFamille.Designer.cs">
       <DependentUpon>frmFamille.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\frmProfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\frmProfil.Designer.cs">
+      <DependentUpon>frmProfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\frmService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmFamille.resx">
       <DependentUpon>frmFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\frmProfil.resx">
+      <DependentUpon>frmProfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmService.resx">
       <DependentUpon>frmService.cs</DependentUpon>

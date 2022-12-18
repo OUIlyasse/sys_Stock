@@ -29,5 +29,11 @@ namespace g_Stock.Master
             frmService frm = new frmService();
             frm.ShowDialog();
         }
+
+        private void btnProfil_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmProfil frm = new frmProfil();
+            frm.ShowDialog();
+        }
     }
 }

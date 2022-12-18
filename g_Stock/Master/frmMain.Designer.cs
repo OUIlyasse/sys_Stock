@@ -30,15 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.btnFamille = new DevExpress.XtraBars.BarButtonItem();
+            this.btnService = new DevExpress.XtraBars.BarButtonItem();
+            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.bar3 = new DevExpress.XtraBars.Bar();
-            this.btnFamille = new DevExpress.XtraBars.BarButtonItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.btnService = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProfil = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,10 +56,59 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnFamille,
-            this.btnService});
+            this.btnService,
+            this.btnProfil});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 2;
+            this.barManager1.MaxItemId = 3;
             this.barManager1.StatusBar = this.bar3;
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Main menu";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnService),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnProfil)});
+            this.bar2.OptionsBar.MultiLine = true;
+            this.bar2.OptionsBar.UseWholeRow = true;
+            this.bar2.Text = "Main menu";
+            // 
+            // btnFamille
+            // 
+            this.btnFamille.Caption = "&Famille";
+            this.btnFamille.Id = 0;
+            this.btnFamille.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFamille.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnFamille.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
+            this.btnFamille.Name = "btnFamille";
+            this.btnFamille.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.True;
+            this.btnFamille.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnFamille_ItemClick);
+            // 
+            // btnService
+            // 
+            this.btnService.Caption = "&Service";
+            this.btnService.Id = 1;
+            this.btnService.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnService.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnService.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
+            this.btnService.Name = "btnService";
+            this.btnService.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.False;
+            this.btnService.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnService_ItemClick);
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
             // 
             // barDockControlTop
             // 
@@ -92,41 +142,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 537);
             // 
-            // bar2
-            // 
-            this.bar2.BarName = "Main menu";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnService)});
-            this.bar2.OptionsBar.MultiLine = true;
-            this.bar2.OptionsBar.UseWholeRow = true;
-            this.bar2.Text = "Main menu";
-            // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
-            // btnFamille
-            // 
-            this.btnFamille.Caption = "&Famille";
-            this.btnFamille.Id = 0;
-            this.btnFamille.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFamille.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnFamille.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
-            this.btnFamille.Name = "btnFamille";
-            this.btnFamille.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.True;
-            this.btnFamille.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnFamille_ItemClick);
-            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -137,15 +152,16 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille)});
             this.bar1.Text = "Tools";
             // 
-            // btnService
+            // btnProfil
             // 
-            this.btnService.Caption = "&Service";
-            this.btnService.Id = 1;
-            this.btnService.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnService.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnService.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
-            this.btnService.Name = "btnService";
-            this.btnService.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnService_ItemClick);
+            this.btnProfil.Caption = "&Profil";
+            this.btnProfil.Id = 2;
+            this.btnProfil.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfil.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnProfil.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
+            this.btnProfil.Name = "btnProfil";
+            this.btnProfil.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.True;
+            this.btnProfil.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProfil_ItemClick);
             // 
             // frmMain
             // 
@@ -181,5 +197,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnService;
+        private DevExpress.XtraBars.BarButtonItem btnProfil;
     }
 }

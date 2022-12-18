@@ -58,7 +58,7 @@
             this.groupBox3.Controls.Add(this.txtService);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(372, 342);
+            this.groupBox3.Size = new System.Drawing.Size(372, 345);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
@@ -106,7 +106,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(416, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(372, 342);
+            this.groupBox2.Size = new System.Drawing.Size(404, 345);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Affichage";
@@ -117,7 +117,7 @@
             this.lblLigne.AutoSize = true;
             this.lblLigne.Font = new System.Drawing.Font("Lucida Console", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLigne.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblLigne.Location = new System.Drawing.Point(151, 24);
+            this.lblLigne.Location = new System.Drawing.Point(179, 24);
             this.lblLigne.Name = "lblLigne";
             this.lblLigne.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblLigne.Size = new System.Drawing.Size(47, 14);
@@ -130,7 +130,7 @@
             this.gcService.Location = new System.Drawing.Point(6, 41);
             this.gcService.MainView = this.gvService;
             this.gcService.Name = "gcService";
-            this.gcService.Size = new System.Drawing.Size(360, 295);
+            this.gcService.Size = new System.Drawing.Size(392, 295);
             this.gcService.TabIndex = 0;
             this.gcService.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvService});
@@ -240,7 +240,7 @@
             // frmService
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(832, 453);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmService";

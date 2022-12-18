@@ -128,24 +128,6 @@ namespace DAL.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Famille>("Select_Famille_By_ID", mergeOption, fam_IDParameter);
         }
     
-        public virtual int Delete_Famille_Provisoire(Nullable<int> fam_ID)
-        {
-            var fam_IDParameter = fam_ID.HasValue ?
-                new ObjectParameter("fam_ID", fam_ID) :
-                new ObjectParameter("fam_ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Famille_Provisoire", fam_IDParameter);
-        }
-    
-        public virtual int Return_Famille(Nullable<int> fam_ID)
-        {
-            var fam_IDParameter = fam_ID.HasValue ?
-                new ObjectParameter("fam_ID", fam_ID) :
-                new ObjectParameter("fam_ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Return_Famille", fam_IDParameter);
-        }
-    
         public virtual int Delete_Service(Nullable<int> svc_ID)
         {
             var svc_IDParameter = svc_ID.HasValue ?
@@ -228,6 +210,86 @@ namespace DAL.DB
                 new ObjectParameter("svc_description", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Service", svc_IDParameter, svc_NomParameter, svc_descriptionParameter);
+        }
+    
+        public virtual int Delete_Profil(Nullable<int> prof_ID)
+        {
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Profil", prof_IDParameter);
+        }
+    
+        public virtual int Insert_Profil(string prof_Nom, string prof_Description)
+        {
+            var prof_NomParameter = prof_Nom != null ?
+                new ObjectParameter("prof_Nom", prof_Nom) :
+                new ObjectParameter("prof_Nom", typeof(string));
+    
+            var prof_DescriptionParameter = prof_Description != null ?
+                new ObjectParameter("prof_Description", prof_Description) :
+                new ObjectParameter("prof_Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Profil", prof_NomParameter, prof_DescriptionParameter);
+        }
+    
+        public virtual ObjectResult<Select_Profil_Result> Select_Profil()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Profil_Result>("Select_Profil");
+        }
+    
+        public virtual ObjectResult<Profil> Select_Profil_By_ID(Nullable<int> prof_ID)
+        {
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Profil>("Select_Profil_By_ID", prof_IDParameter);
+        }
+    
+        public virtual ObjectResult<Profil> Select_Profil_By_ID(Nullable<int> prof_ID, MergeOption mergeOption)
+        {
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Profil>("Select_Profil_By_ID", mergeOption, prof_IDParameter);
+        }
+    
+        public virtual ObjectResult<Profil> Select_Profil_By_Profil(string prof_Nom)
+        {
+            var prof_NomParameter = prof_Nom != null ?
+                new ObjectParameter("prof_Nom", prof_Nom) :
+                new ObjectParameter("prof_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Profil>("Select_Profil_By_Profil", prof_NomParameter);
+        }
+    
+        public virtual ObjectResult<Profil> Select_Profil_By_Profil(string prof_Nom, MergeOption mergeOption)
+        {
+            var prof_NomParameter = prof_Nom != null ?
+                new ObjectParameter("prof_Nom", prof_Nom) :
+                new ObjectParameter("prof_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Profil>("Select_Profil_By_Profil", mergeOption, prof_NomParameter);
+        }
+    
+        public virtual int Update_Profil(Nullable<int> prof_ID, string prof_Nom, string prof_Description)
+        {
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            var prof_NomParameter = prof_Nom != null ?
+                new ObjectParameter("prof_Nom", prof_Nom) :
+                new ObjectParameter("prof_Nom", typeof(string));
+    
+            var prof_DescriptionParameter = prof_Description != null ?
+                new ObjectParameter("prof_Description", prof_Description) :
+                new ObjectParameter("prof_Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Profil", prof_IDParameter, prof_NomParameter, prof_DescriptionParameter);
         }
     }
 }
