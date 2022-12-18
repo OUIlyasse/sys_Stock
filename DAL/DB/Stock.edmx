@@ -550,15 +550,17 @@
         <Function Name="Delete_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Delete_Famille_Provisoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        <Function Name="Delete_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="Return_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="fam_ID" Type="int" Mode="In" />
+        <Function Name="Insert_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="svc_Date" Type="date" Mode="In" />
         </Function>
         <Function Name="Select_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Famille_By_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -567,10 +569,22 @@
         <Function Name="Select_Famille_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Service_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Service_By_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Update_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+          <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
         </Function>
         <EntityContainer Name="g_StockModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
@@ -1456,11 +1470,37 @@
           <FunctionImport Name="Return_Famille">
             <Parameter Name="fam_ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Delete_Service">
+          <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Service">
+            <Parameter Name="svc_Nom" Mode="In" Type="String" />
+            <Parameter Name="svc_description" Mode="In" Type="String" />
+            <Parameter Name="svc_Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Service" ReturnType="Collection(g_StockModel.Select_Service_Result)" />
+          <FunctionImport Name="Select_Service_By_ID" EntitySet="Service" ReturnType="Collection(g_StockModel.Service)">
+          <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Service_By_Service" EntitySet="Service" ReturnType="Collection(g_StockModel.Service)">
+          <Parameter Name="svc_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Service">
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="svc_Nom" Mode="In" Type="String" />
+            <Parameter Name="svc_description" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Famille_Result">
           <Property Type="Int32" Name="fam_ID" Nullable="false" />
           <Property Type="String" Name="fam_Nom" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="fam_Descripction" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Service_Result">
+          <Property Type="Int32" Name="svc_ID" Nullable="false" />
+          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="svc_description" Nullable="true" />
+          <Property Type="DateTime" Name="svc_Date" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1680,6 +1720,23 @@
                 <ScalarProperty Name="svc_Status" ColumnName="svc_Status" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Service">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Service">
+                  <ScalarProperty Name="svc_ID" ParameterName="svc_ID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Service">
+                  <ScalarProperty Name="svc_description" ParameterName="svc_description" Version="Current" />
+                  <ScalarProperty Name="svc_Nom" ParameterName="svc_Nom" Version="Current" />
+                  <ScalarProperty Name="svc_ID" ParameterName="svc_ID" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Service">
+                  <ScalarProperty Name="svc_Date" ParameterName="svc_Date" />
+                  <ScalarProperty Name="svc_description" ParameterName="svc_description" />
+                  <ScalarProperty Name="svc_Nom" ParameterName="svc_Nom" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Unite">
             <EntityTypeMapping TypeName="g_StockModel.Unite">
@@ -1736,9 +1793,22 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Select_Famille_By_Famille" FunctionName="g_StockModel.Store.Select_Famille_By_Famille" />
           <FunctionImportMapping FunctionImportName="Select_Famille_By_ID" FunctionName="g_StockModel.Store.Select_Famille_By_ID" />
-          <FunctionImportMapping FunctionImportName="Delete_Famille_Provisoire" FunctionName="g_StockModel.Store.Delete_Famille_Provisoire" />
-          <FunctionImportMapping FunctionImportName="Return_Famille" FunctionName="g_StockModel.Store.Return_Famille" />
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Service" FunctionName="g_StockModel.Store.Delete_Service" />
+          <FunctionImportMapping FunctionImportName="Insert_Service" FunctionName="g_StockModel.Store.Insert_Service" />
+          <FunctionImportMapping FunctionImportName="Select_Service" FunctionName="g_StockModel.Store.Select_Service">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Service_Result">
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
+                <ScalarProperty Name="svc_description" ColumnName="svc_description" />
+                <ScalarProperty Name="svc_Date" ColumnName="svc_Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_Service_By_ID" FunctionName="g_StockModel.Store.Select_Service_By_ID" />
+          <FunctionImportMapping FunctionImportName="Select_Service_By_Service" FunctionName="g_StockModel.Store.Select_Service_By_Service" />
+          <FunctionImportMapping FunctionImportName="Update_Service" FunctionName="g_StockModel.Store.Update_Service" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

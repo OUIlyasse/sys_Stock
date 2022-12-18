@@ -145,5 +145,89 @@ namespace DAL.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Return_Famille", fam_IDParameter);
         }
+    
+        public virtual int Delete_Service(Nullable<int> svc_ID)
+        {
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Service", svc_IDParameter);
+        }
+    
+        public virtual int Insert_Service(string svc_Nom, string svc_description, Nullable<System.DateTime> svc_Date)
+        {
+            var svc_NomParameter = svc_Nom != null ?
+                new ObjectParameter("svc_Nom", svc_Nom) :
+                new ObjectParameter("svc_Nom", typeof(string));
+    
+            var svc_descriptionParameter = svc_description != null ?
+                new ObjectParameter("svc_description", svc_description) :
+                new ObjectParameter("svc_description", typeof(string));
+    
+            var svc_DateParameter = svc_Date.HasValue ?
+                new ObjectParameter("svc_Date", svc_Date) :
+                new ObjectParameter("svc_Date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Service", svc_NomParameter, svc_descriptionParameter, svc_DateParameter);
+        }
+    
+        public virtual ObjectResult<Select_Service_Result> Select_Service()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Service_Result>("Select_Service");
+        }
+    
+        public virtual ObjectResult<Service> Select_Service_By_ID(Nullable<int> svc_ID)
+        {
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("Select_Service_By_ID", svc_IDParameter);
+        }
+    
+        public virtual ObjectResult<Service> Select_Service_By_ID(Nullable<int> svc_ID, MergeOption mergeOption)
+        {
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("Select_Service_By_ID", mergeOption, svc_IDParameter);
+        }
+    
+        public virtual ObjectResult<Service> Select_Service_By_Service(string svc_Nom)
+        {
+            var svc_NomParameter = svc_Nom != null ?
+                new ObjectParameter("svc_Nom", svc_Nom) :
+                new ObjectParameter("svc_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("Select_Service_By_Service", svc_NomParameter);
+        }
+    
+        public virtual ObjectResult<Service> Select_Service_By_Service(string svc_Nom, MergeOption mergeOption)
+        {
+            var svc_NomParameter = svc_Nom != null ?
+                new ObjectParameter("svc_Nom", svc_Nom) :
+                new ObjectParameter("svc_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("Select_Service_By_Service", mergeOption, svc_NomParameter);
+        }
+    
+        public virtual int Update_Service(Nullable<int> svc_ID, string svc_Nom, string svc_description)
+        {
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var svc_NomParameter = svc_Nom != null ?
+                new ObjectParameter("svc_Nom", svc_Nom) :
+                new ObjectParameter("svc_Nom", typeof(string));
+    
+            var svc_descriptionParameter = svc_description != null ?
+                new ObjectParameter("svc_description", svc_description) :
+                new ObjectParameter("svc_description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Service", svc_IDParameter, svc_NomParameter, svc_descriptionParameter);
+        }
     }
 }

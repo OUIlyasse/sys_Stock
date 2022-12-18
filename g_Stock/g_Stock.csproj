@@ -39,6 +39,7 @@
     <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -63,12 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Master\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,25 +76,40 @@
     <Compile Include="Master\frmL.Designer.cs">
       <DependentUpon>frmL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\frmFamille.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PL\frmFamille.Designer.cs">
       <DependentUpon>frmFamille.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\frmService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\frmService.Designer.cs">
+      <DependentUpon>frmService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Master\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmG.resx">
       <DependentUpon>frmG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmL.resx">
       <DependentUpon>frmL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PL\frmFamille.resx">
       <DependentUpon>frmFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\frmService.resx">
+      <DependentUpon>frmService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
