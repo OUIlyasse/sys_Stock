@@ -425,5 +425,75 @@ namespace DAL.DB
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Service_By_Nom_Result>("Select_Service_By_Nom");
         }
+    
+        public virtual int Delete_Magasin(Nullable<int> mags_ID)
+        {
+            var mags_IDParameter = mags_ID.HasValue ?
+                new ObjectParameter("mags_ID", mags_ID) :
+                new ObjectParameter("mags_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Magasin", mags_IDParameter);
+        }
+    
+        public virtual int Insert_Magasin(string mags_Magasin, string mags_Ville, string mags_Description)
+        {
+            var mags_MagasinParameter = mags_Magasin != null ?
+                new ObjectParameter("mags_Magasin", mags_Magasin) :
+                new ObjectParameter("mags_Magasin", typeof(string));
+    
+            var mags_VilleParameter = mags_Ville != null ?
+                new ObjectParameter("mags_Ville", mags_Ville) :
+                new ObjectParameter("mags_Ville", typeof(string));
+    
+            var mags_DescriptionParameter = mags_Description != null ?
+                new ObjectParameter("mags_Description", mags_Description) :
+                new ObjectParameter("mags_Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Magasin", mags_MagasinParameter, mags_VilleParameter, mags_DescriptionParameter);
+        }
+    
+        public virtual ObjectResult<Select_Magasin_Result> Select_Magasin()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Magasin_Result>("Select_Magasin");
+        }
+    
+        public virtual int Update_Magasin(Nullable<int> mags_ID, string mags_Magasin, string mags_Ville, string mags_Description)
+        {
+            var mags_IDParameter = mags_ID.HasValue ?
+                new ObjectParameter("mags_ID", mags_ID) :
+                new ObjectParameter("mags_ID", typeof(int));
+    
+            var mags_MagasinParameter = mags_Magasin != null ?
+                new ObjectParameter("mags_Magasin", mags_Magasin) :
+                new ObjectParameter("mags_Magasin", typeof(string));
+    
+            var mags_VilleParameter = mags_Ville != null ?
+                new ObjectParameter("mags_Ville", mags_Ville) :
+                new ObjectParameter("mags_Ville", typeof(string));
+    
+            var mags_DescriptionParameter = mags_Description != null ?
+                new ObjectParameter("mags_Description", mags_Description) :
+                new ObjectParameter("mags_Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Magasin", mags_IDParameter, mags_MagasinParameter, mags_VilleParameter, mags_DescriptionParameter);
+        }
+    
+        public virtual ObjectResult<Magasin> Select_Magasin_By_ID(Nullable<int> mags_ID)
+        {
+            var mags_IDParameter = mags_ID.HasValue ?
+                new ObjectParameter("mags_ID", mags_ID) :
+                new ObjectParameter("mags_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Magasin>("Select_Magasin_By_ID", mags_IDParameter);
+        }
+    
+        public virtual ObjectResult<Magasin> Select_Magasin_By_ID(Nullable<int> mags_ID, MergeOption mergeOption)
+        {
+            var mags_IDParameter = mags_ID.HasValue ?
+                new ObjectParameter("mags_ID", mags_ID) :
+                new ObjectParameter("mags_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Magasin>("Select_Magasin_By_ID", mergeOption, mags_IDParameter);
+        }
     }
 }

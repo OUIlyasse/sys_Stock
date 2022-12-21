@@ -95,6 +95,12 @@
     <Compile Include="PL\frmFamille.Designer.cs">
       <DependentUpon>frmFamille.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\frmMagasin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\frmMagasin.Designer.cs">
+      <DependentUpon>frmMagasin.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\frmProfil.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmFamille.resx">
       <DependentUpon>frmFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\frmMagasin.resx">
+      <DependentUpon>frmMagasin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmProfil.resx">
       <DependentUpon>frmProfil.cs</DependentUpon>

@@ -550,6 +550,9 @@
         <Function Name="Delete_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Delete_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mags_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Delete_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_ID" Type="int" Mode="In" />
         </Function>
@@ -562,6 +565,11 @@
         <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Insert_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mags_Magasin" Type="nvarchar" Mode="In" />
+          <Parameter Name="mags_Ville" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="mags_Description" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Insert_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_Nom" Type="nvarchar" Mode="In" />
@@ -593,6 +601,10 @@
         <Function Name="Select_Famille_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Magasin_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mags_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Select_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Profil_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_ID" Type="int" Mode="In" />
@@ -619,6 +631,12 @@
           <Parameter Name="fam_ID" Type="int" Mode="In" />
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mags_ID" Type="int" Mode="In" />
+          <Parameter Name="mags_Magasin" Type="nvarchar" Mode="In" />
+          <Parameter Name="mags_Ville" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="mags_Description" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Update_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_ID" Type="int" Mode="In" />
@@ -1550,6 +1568,24 @@
             <Parameter Name="dt2" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Select_Service_By_Nom" ReturnType="Collection(g_StockModel.Select_Service_By_Nom_Result)" />
+          <FunctionImport Name="Delete_Magasin">
+          <Parameter Name="mags_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Magasin">
+            <Parameter Name="mags_Magasin" Mode="In" Type="String" />
+            <Parameter Name="mags_Ville" Mode="In" Type="String" />
+            <Parameter Name="mags_Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Magasin" ReturnType="Collection(g_StockModel.Select_Magasin_Result)" />
+          <FunctionImport Name="Update_Magasin">
+            <Parameter Name="mags_ID" Mode="In" Type="Int32" />
+            <Parameter Name="mags_Magasin" Mode="In" Type="String" />
+            <Parameter Name="mags_Ville" Mode="In" Type="String" />
+            <Parameter Name="mags_Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Magasin_By_ID" EntitySet="Magasin" ReturnType="Collection(g_StockModel.Magasin)">
+            <Parameter Name="mags_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Famille_Result">
           <Property Type="Int32" Name="fam_ID" Nullable="false" />
@@ -1637,6 +1673,12 @@
         </ComplexType>
         <ComplexType Name="Select_Service_By_Nom_Result">
           <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Select_Magasin_Result">
+          <Property Type="Int32" Name="mags_ID" Nullable="false" />
+          <Property Type="String" Name="mags_Magasin" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="mags_Ville" Nullable="true" />
+          <Property Type="String" Name="mags_Description" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1809,6 +1851,24 @@
                 <ScalarProperty Name="mags_Description" ColumnName="mags_Description" />
                 <ScalarProperty Name="mags_Status" ColumnName="mags_Status" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Magasin">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Magasin">
+                  <ScalarProperty Name="mags_ID" ParameterName="mags_ID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Magasin">
+                  <ScalarProperty Name="mags_Description" ParameterName="mags_Description" Version="Current" />
+                  <ScalarProperty Name="mags_Ville" ParameterName="mags_Ville" Version="Current" />
+                  <ScalarProperty Name="mags_Magasin" ParameterName="mags_Magasin" Version="Current" />
+                  <ScalarProperty Name="mags_ID" ParameterName="mags_ID" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Magasin">
+                  <ScalarProperty Name="mags_Description" ParameterName="mags_Description" />
+                  <ScalarProperty Name="mags_Ville" ParameterName="mags_Ville" />
+                  <ScalarProperty Name="mags_Magasin" ParameterName="mags_Magasin" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mouvement">
@@ -2021,6 +2081,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Magasin" FunctionName="g_StockModel.Store.Delete_Magasin" />
+          <FunctionImportMapping FunctionImportName="Insert_Magasin" FunctionName="g_StockModel.Store.Insert_Magasin" />
+          <FunctionImportMapping FunctionImportName="Select_Magasin" FunctionName="g_StockModel.Store.Select_Magasin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Magasin_Result">
+                <ScalarProperty Name="mags_ID" ColumnName="mags_ID" />
+                <ScalarProperty Name="mags_Magasin" ColumnName="mags_Magasin" />
+                <ScalarProperty Name="mags_Ville" ColumnName="mags_Ville" />
+                <ScalarProperty Name="mags_Description" ColumnName="mags_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Update_Magasin" FunctionName="g_StockModel.Store.Update_Magasin" />
+          <FunctionImportMapping FunctionImportName="Select_Magasin_By_ID" FunctionName="g_StockModel.Store.Select_Magasin_By_ID" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

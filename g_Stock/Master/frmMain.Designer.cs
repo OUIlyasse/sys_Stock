@@ -42,6 +42,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.mdi_Manager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.btnMagasin = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdi_Manager)).BeginInit();
             this.SuspendLayout();
@@ -61,9 +62,10 @@
             this.btnFamille,
             this.btnService,
             this.btnProfil,
-            this.btnUtilisateur});
+            this.btnUtilisateur,
+            this.btnMagasin});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -76,7 +78,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnService),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnProfil),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnUtilisateur)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnUtilisateur),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMagasin)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -193,6 +196,16 @@
             this.mdi_Manager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeader;
             this.mdi_Manager.MdiParent = this;
             // 
+            // btnMagasin
+            // 
+            this.btnMagasin.Caption = "&Magasin";
+            this.btnMagasin.Id = 4;
+            this.btnMagasin.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMagasin.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnMagasin.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M));
+            this.btnMagasin.Name = "btnMagasin";
+            this.btnMagasin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMagasin_ItemClick);
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -231,5 +244,6 @@
         private DevExpress.XtraBars.BarButtonItem btnProfil;
         private DevExpress.XtraBars.BarButtonItem btnUtilisateur;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdi_Manager;
+        private DevExpress.XtraBars.BarButtonItem btnMagasin;
     }
 }

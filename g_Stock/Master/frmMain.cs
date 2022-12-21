@@ -72,5 +72,11 @@ namespace g_Stock.Master
 
             OpenForm(frm);
         }
+
+        private void btnMagasin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmMagasin frm = new frmMagasin();
+            frm.ShowDialog();
+        }
     }
 }
