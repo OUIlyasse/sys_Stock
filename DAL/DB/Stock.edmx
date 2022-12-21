@@ -215,9 +215,9 @@
           <Key>
             <PropertyRef Name="util_ID" />
           </Key>
-          <Property Name="util_ID" Type="int" Nullable="false" />
+          <Property Name="util_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="util_Nom" Type="nvarchar(max)" />
-          <Property Name="util_Date" Type="nvarchar(max)" />
+          <Property Name="util_Date" Type="date" />
           <Property Name="util_Identifiant" Type="nvarchar(max)" />
           <Property Name="util_MotPasse" Type="nvarchar(max)" />
           <Property Name="svc_ID" Type="int" />
@@ -556,6 +556,9 @@
         <Function Name="Delete_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Delete_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
@@ -568,6 +571,20 @@
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="svc_Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Insert_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="util_Date" Type="date" Mode="In" />
+          <Parameter Name="util_Identifiant" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="util_MotPasse" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+          <Parameter Name="prof_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Search_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="dt1" Type="date" Mode="In" />
+          <Parameter Name="dt2" Type="date" Mode="In" />
         </Function>
         <Function Name="Select_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Famille_By_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -587,9 +604,17 @@
         <Function Name="Select_Service_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Service_By_Nom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Service_By_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Select_Utilisateur_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Utilisateur_By_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_Identifiant" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="select_vw_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Update_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
@@ -604,6 +629,14 @@
           <Parameter Name="svc_ID" Type="int" Mode="In" />
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_ID" Type="int" Mode="In" />
+          <Parameter Name="util_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="util_Identifiant" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="util_MotPasse" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+          <Parameter Name="prof_ID" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="g_StockModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
@@ -940,7 +973,7 @@
           <Property Name="prof_Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="prof_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="prof_Status" Type="Boolean" />
-          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Utilisateur_Profil" FromRole="Profil" ToRole="Utilisateur" />
+          <NavigationProperty Name="Utilisateur" Relationship="g_StockModel.FK_Utilisateur_Profil" FromRole="Profil" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="Rayonnage">
           <Key>
@@ -963,7 +996,7 @@
           <Property Name="svc_Date" Type="DateTime" Precision="0" />
           <Property Name="svc_Status" Type="Boolean" />
           <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Service" FromRole="Service" ToRole="Article_Info" />
-          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Utilisateur_Service" FromRole="Service" ToRole="Utilisateur" />
+          <NavigationProperty Name="Utilisateur" Relationship="g_StockModel.FK_Utilisateur_Service" FromRole="Service" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="Unite">
           <Key>
@@ -996,20 +1029,6 @@
           <NavigationProperty Name="Article_Info" Relationship="Self.FK_Article_Unite_Type" FromRole="Unite_Type" ToRole="Article_Info" />
           <NavigationProperty Name="Mouvement" Relationship="Self.FK_Mouvement_Unite_Type" FromRole="Unite_Type" ToRole="Mouvement" />
           <NavigationProperty Name="Unite_Mesure" Relationship="Self.FK_Unite_Type_Unite_Mesure" FromRole="Unite_Type" ToRole="Unite_Mesure" />
-        </EntityType>
-        <EntityType Name="Utilisateur">
-          <Key>
-            <PropertyRef Name="util_ID" />
-          </Key>
-          <Property Name="util_ID" Type="Int32" Nullable="false" />
-          <Property Name="util_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="util_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="util_Identifiant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="util_MotPasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="svc_ID" Type="Int32" />
-          <Property Name="prof_ID" Type="Int32" />
-          <NavigationProperty Name="Profil" Relationship="Self.FK_Utilisateur_Profil" FromRole="Utilisateur" ToRole="Profil" />
-          <NavigationProperty Name="Service" Relationship="Self.FK_Utilisateur_Service" FromRole="Utilisateur" ToRole="Service" />
         </EntityType>
         <Association Name="FK_Article_CodeBarre_Action">
           <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
@@ -1299,30 +1318,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Utilisateur_Profil">
-          <End Role="Profil" Type="Self.Profil" Multiplicity="0..1" />
-          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profil">
-              <PropertyRef Name="prof_ID" />
-            </Principal>
-            <Dependent Role="Utilisateur">
-              <PropertyRef Name="prof_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Utilisateur_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="svc_ID" />
-            </Principal>
-            <Dependent Role="Utilisateur">
-              <PropertyRef Name="svc_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Unite_Type_Unite_Mesure">
           <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
           <End Role="Unite_Type" Type="Self.Unite_Type" Multiplicity="*" />
@@ -1355,7 +1350,6 @@
           <EntitySet Name="Unite" EntityType="Self.Unite" />
           <EntitySet Name="Unite_Mesure" EntityType="Self.Unite_Mesure" />
           <EntitySet Name="Unite_Type" EntityType="Self.Unite_Type" />
-          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
           <AssociationSet Name="FK_Article_CodeBarre_Action" Association="Self.FK_Article_CodeBarre_Action">
             <End Role="Action" EntitySet="Action" />
             <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
@@ -1452,14 +1446,6 @@
             <End Role="Unite_Type" EntitySet="Unite_Type" />
             <End Role="Mouvement" EntitySet="Mouvement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Utilisateur_Profil" Association="Self.FK_Utilisateur_Profil">
-            <End Role="Profil" EntitySet="Profil" />
-            <End Role="Utilisateur" EntitySet="Utilisateur" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Utilisateur_Service" Association="Self.FK_Utilisateur_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="Utilisateur" EntitySet="Utilisateur" />
-          </AssociationSet>
           <AssociationSet Name="FK_Unite_Type_Unite_Mesure" Association="Self.FK_Unite_Type_Unite_Mesure">
             <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
             <End Role="Unite_Type" EntitySet="Unite_Type" />
@@ -1522,6 +1508,48 @@
             <Parameter Name="prof_Nom" Mode="In" Type="String" />
             <Parameter Name="prof_Description" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="select_vw_Utilisateur" ReturnType="Collection(g_StockModel.select_vw_Utilisateur_Result)" />
+          <FunctionImport Name="Delete_Utilisateur">
+          <Parameter Name="util_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Utilisateur">
+            <Parameter Name="util_Nom" Mode="In" Type="String" />
+            <Parameter Name="util_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="util_Identifiant" Mode="In" Type="String" />
+            <Parameter Name="util_MotPasse" Mode="In" Type="String" />
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="prof_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Utilisateur_By_ID" EntitySet="Utilisateur" ReturnType="Collection(g_StockModel.Utilisateur)">
+          <Parameter Name="util_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Utilisateur_By_User" EntitySet="Utilisateur" ReturnType="Collection(g_StockModel.Utilisateur)">
+          <Parameter Name="util_Identifiant" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Utilisateur">
+            <Parameter Name="util_ID" Mode="In" Type="Int32" />
+            <Parameter Name="util_Nom" Mode="In" Type="String" />
+            <Parameter Name="util_Identifiant" Mode="In" Type="String" />
+            <Parameter Name="util_MotPasse" Mode="In" Type="String" />
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="prof_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Utilisateur" EntityType="g_StockModel.Utilisateur" />
+          <AssociationSet Name="FK_Utilisateur_Profil" Association="g_StockModel.FK_Utilisateur_Profil">
+            <End Role="Profil" EntitySet="Profil" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Service" Association="g_StockModel.FK_Utilisateur_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <FunctionImport Name="Search_Utilisateur" ReturnType="Collection(g_StockModel.Search_Utilisateur_Result)">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+            <Parameter Name="dt1" Mode="In" Type="DateTime" />
+            <Parameter Name="dt2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Service_By_Nom" ReturnType="Collection(g_StockModel.Select_Service_By_Nom_Result)" />
         </EntityContainer>
         <ComplexType Name="Select_Famille_Result">
           <Property Type="Int32" Name="fam_ID" Nullable="false" />
@@ -1550,6 +1578,65 @@
           <Property Type="String" Name="prof_Nom" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="prof_Description" Nullable="true" />
           <Property Type="Boolean" Name="prof_Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="select_vw_Utilisateur_Result">
+          <Property Type="Int32" Name="util_ID" Nullable="false" />
+          <Property Type="String" Name="util_Nom" Nullable="true" />
+          <Property Type="DateTime" Name="util_Date" Nullable="true" />
+          <Property Type="String" Name="util_Identifiant" Nullable="true" />
+          <Property Type="String" Name="util_MotPasse" Nullable="true" />
+          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="prof_Nom" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="util_ID" />
+          </Key>
+          <Property Name="util_ID" Type="Int32" Nullable="false" />
+          <Property Name="util_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="util_Date" Type="DateTime" Precision="0" />
+          <Property Name="util_Identifiant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="util_MotPasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="svc_ID" Type="Int32" />
+          <Property Name="prof_ID" Type="Int32" />
+          <NavigationProperty Name="Profil" Relationship="g_StockModel.FK_Utilisateur_Profil" FromRole="Utilisateur" ToRole="Profil" />
+          <NavigationProperty Name="Service" Relationship="g_StockModel.FK_Utilisateur_Service" FromRole="Utilisateur" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_Utilisateur_Profil">
+          <End Type="g_StockModel.Profil" Role="Profil" Multiplicity="0..1" />
+          <End Type="g_StockModel.Utilisateur" Role="Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil">
+              <PropertyRef Name="prof_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="prof_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Service">
+          <End Type="g_StockModel.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="g_StockModel.Utilisateur" Role="Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="svc_ID" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="svc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Search_Utilisateur_Result">
+          <Property Type="Int32" Name="util_ID" Nullable="false" />
+          <Property Type="String" Name="util_Nom" Nullable="true" />
+          <Property Type="DateTime" Name="util_Date" Nullable="true" />
+          <Property Type="String" Name="util_Identifiant" Nullable="true" />
+          <Property Type="String" Name="util_MotPasse" Nullable="true" />
+          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="prof_Nom" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Select_Service_By_Nom_Result">
+          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1815,19 +1902,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Utilisateur">
-            <EntityTypeMapping TypeName="g_StockModel.Utilisateur">
-              <MappingFragment StoreEntitySet="Utilisateur">
-                <ScalarProperty Name="util_ID" ColumnName="util_ID" />
-                <ScalarProperty Name="util_Nom" ColumnName="util_Nom" />
-                <ScalarProperty Name="util_Date" ColumnName="util_Date" />
-                <ScalarProperty Name="util_Identifiant" ColumnName="util_Identifiant" />
-                <ScalarProperty Name="util_MotPasse" ColumnName="util_MotPasse" />
-                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
-                <ScalarProperty Name="prof_ID" ColumnName="prof_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Delete_Famille" FunctionName="g_StockModel.Store.Delete_Famille" />
           <FunctionImportMapping FunctionImportName="Insert_Famille" FunctionName="g_StockModel.Store.Insert_Famille" />
           <FunctionImportMapping FunctionImportName="Update_Famille" FunctionName="g_StockModel.Store.Update_Famille" />
@@ -1873,6 +1947,80 @@
           <FunctionImportMapping FunctionImportName="Select_Profil_By_Profil" FunctionName="g_StockModel.Store.Select_Profil_By_Profil">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Update_Profil" FunctionName="g_StockModel.Store.Update_Profil" />
+          <FunctionImportMapping FunctionImportName="select_vw_Utilisateur" FunctionName="g_StockModel.Store.select_vw_Utilisateur">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.select_vw_Utilisateur_Result">
+                <ScalarProperty Name="util_ID" ColumnName="util_ID" />
+                <ScalarProperty Name="util_Nom" ColumnName="util_Nom" />
+                <ScalarProperty Name="util_Date" ColumnName="util_Date" />
+                <ScalarProperty Name="util_Identifiant" ColumnName="util_Identifiant" />
+                <ScalarProperty Name="util_MotPasse" ColumnName="util_MotPasse" />
+                <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
+                <ScalarProperty Name="prof_Nom" ColumnName="prof_Nom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Utilisateur" FunctionName="g_StockModel.Store.Delete_Utilisateur" />
+          <FunctionImportMapping FunctionImportName="Insert_Utilisateur" FunctionName="g_StockModel.Store.Insert_Utilisateur" />
+          <FunctionImportMapping FunctionImportName="Select_Utilisateur_By_ID" FunctionName="g_StockModel.Store.Select_Utilisateur_By_ID" />
+          <FunctionImportMapping FunctionImportName="Select_Utilisateur_By_User" FunctionName="g_StockModel.Store.Select_Utilisateur_By_User" />
+          <FunctionImportMapping FunctionImportName="Update_Utilisateur" FunctionName="g_StockModel.Store.Update_Utilisateur" />
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="g_StockModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="prof_ID" ColumnName="prof_ID" />
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="util_MotPasse" ColumnName="util_MotPasse" />
+                <ScalarProperty Name="util_Identifiant" ColumnName="util_Identifiant" />
+                <ScalarProperty Name="util_Date" ColumnName="util_Date" />
+                <ScalarProperty Name="util_Nom" ColumnName="util_Nom" />
+                <ScalarProperty Name="util_ID" ColumnName="util_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Utilisateur">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Utilisateur">
+                  <ScalarProperty Name="util_ID" ParameterName="util_ID" />
+                </DeleteFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Utilisateur">
+                  <ScalarProperty Name="prof_ID" ParameterName="prof_ID" />
+                  <ScalarProperty Name="svc_ID" ParameterName="svc_ID" />
+                  <ScalarProperty Name="util_MotPasse" ParameterName="util_MotPasse" />
+                  <ScalarProperty Name="util_Identifiant" ParameterName="util_Identifiant" />
+                  <ScalarProperty Name="util_Date" ParameterName="util_Date" />
+                  <ScalarProperty Name="util_Nom" ParameterName="util_Nom" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Utilisateur">
+                  <ScalarProperty Name="prof_ID" ParameterName="prof_ID" Version="Current" />
+                  <ScalarProperty Name="svc_ID" ParameterName="svc_ID" Version="Current" />
+                  <ScalarProperty Name="util_MotPasse" ParameterName="util_MotPasse" Version="Current" />
+                  <ScalarProperty Name="util_Identifiant" ParameterName="util_Identifiant" Version="Current" />
+                  <ScalarProperty Name="util_Nom" ParameterName="util_Nom" Version="Current" />
+                  <ScalarProperty Name="util_ID" ParameterName="util_ID" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Search_Utilisateur" FunctionName="g_StockModel.Store.Search_Utilisateur">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Search_Utilisateur_Result">
+                <ScalarProperty Name="util_ID" ColumnName="util_ID" />
+                <ScalarProperty Name="util_Nom" ColumnName="util_Nom" />
+                <ScalarProperty Name="util_Date" ColumnName="util_Date" />
+                <ScalarProperty Name="util_Identifiant" ColumnName="util_Identifiant" />
+                <ScalarProperty Name="util_MotPasse" ColumnName="util_MotPasse" />
+                <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
+                <ScalarProperty Name="prof_Nom" ColumnName="prof_Nom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_Service_By_Nom" FunctionName="g_StockModel.Store.Select_Service_By_Nom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Service_By_Nom_Result">
+                <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

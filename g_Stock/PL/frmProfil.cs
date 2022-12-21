@@ -170,22 +170,28 @@ namespace g_Stock.PL
 
         private void gvProfil_DoubleClick(object sender, EventArgs e)
         {
-            if (gvProfil.RowCount > 0)
+            try
             {
-                try
+                if (gvProfil.RowCount > 0)
                 {
-                    Verify_Buttons(false);
-                    var row = gvProfil.FocusedRowHandle;
-                    string id = gvProfil.GetRowCellValue(row, "prof_Nom").ToString();
-                    Profil f = db.Select_Profil_By_Profil(id).FirstOrDefault();
-                    MessageBox.Show(f.prof_Nom);
-                    txtProfil.Text = f.prof_Nom;
-                    txtDescription.Text = f.prof_Description;
+                    try
+                    {
+                        Verify_Buttons(false);
+                        var row = gvProfil.FocusedRowHandle;
+                        string id = gvProfil.GetRowCellValue(row, "prof_Nom").ToString();
+                        Profil f = db.Select_Profil_By_Profil(id).FirstOrDefault();
+                        MessageBox.Show(f.prof_Nom);
+                        txtProfil.Text = f.prof_Nom;
+                        txtDescription.Text = f.prof_Description;
+                    }
+                    catch (Exception ex)
+                    {
+                        iTools.iMessage.errorMsg("Erreur", ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    iTools.iMessage.errorMsg("Erreur", ex.Message);
-                }
+            }
+            catch (Exception)
+            {
             }
         }
 

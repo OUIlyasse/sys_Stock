@@ -10,19 +10,15 @@
 namespace DAL.DB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Utilisateur
+    public partial class select_vw_Utilisateur_Result
     {
         public int util_ID { get; set; }
         public string util_Nom { get; set; }
         public Nullable<System.DateTime> util_Date { get; set; }
         public string util_Identifiant { get; set; }
         public string util_MotPasse { get; set; }
-        public Nullable<int> svc_ID { get; set; }
-        public Nullable<int> prof_ID { get; set; }
-    
-        public virtual Profil Profil { get; set; }
-        public virtual Service Service { get; set; }
+        public string svc_Nom { get; set; }
+        public string prof_Nom { get; set; }
     }
 }

@@ -291,5 +291,139 @@ namespace DAL.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Profil", prof_IDParameter, prof_NomParameter, prof_DescriptionParameter);
         }
+    
+        public virtual ObjectResult<select_vw_Utilisateur_Result> select_vw_Utilisateur()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<select_vw_Utilisateur_Result>("select_vw_Utilisateur");
+        }
+    
+        public virtual int Delete_Utilisateur(Nullable<int> util_ID)
+        {
+            var util_IDParameter = util_ID.HasValue ?
+                new ObjectParameter("util_ID", util_ID) :
+                new ObjectParameter("util_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Utilisateur", util_IDParameter);
+        }
+    
+        public virtual int Insert_Utilisateur(string util_Nom, Nullable<System.DateTime> util_Date, string util_Identifiant, string util_MotPasse, Nullable<int> svc_ID, Nullable<int> prof_ID)
+        {
+            var util_NomParameter = util_Nom != null ?
+                new ObjectParameter("util_Nom", util_Nom) :
+                new ObjectParameter("util_Nom", typeof(string));
+    
+            var util_DateParameter = util_Date.HasValue ?
+                new ObjectParameter("util_Date", util_Date) :
+                new ObjectParameter("util_Date", typeof(System.DateTime));
+    
+            var util_IdentifiantParameter = util_Identifiant != null ?
+                new ObjectParameter("util_Identifiant", util_Identifiant) :
+                new ObjectParameter("util_Identifiant", typeof(string));
+    
+            var util_MotPasseParameter = util_MotPasse != null ?
+                new ObjectParameter("util_MotPasse", util_MotPasse) :
+                new ObjectParameter("util_MotPasse", typeof(string));
+    
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Utilisateur", util_NomParameter, util_DateParameter, util_IdentifiantParameter, util_MotPasseParameter, svc_IDParameter, prof_IDParameter);
+        }
+    
+        public virtual ObjectResult<Utilisateur> Select_Utilisateur_By_ID(Nullable<int> util_ID)
+        {
+            var util_IDParameter = util_ID.HasValue ?
+                new ObjectParameter("util_ID", util_ID) :
+                new ObjectParameter("util_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Utilisateur>("Select_Utilisateur_By_ID", util_IDParameter);
+        }
+    
+        public virtual ObjectResult<Utilisateur> Select_Utilisateur_By_ID(Nullable<int> util_ID, MergeOption mergeOption)
+        {
+            var util_IDParameter = util_ID.HasValue ?
+                new ObjectParameter("util_ID", util_ID) :
+                new ObjectParameter("util_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Utilisateur>("Select_Utilisateur_By_ID", mergeOption, util_IDParameter);
+        }
+    
+        public virtual ObjectResult<Utilisateur> Select_Utilisateur_By_User(string util_Identifiant)
+        {
+            var util_IdentifiantParameter = util_Identifiant != null ?
+                new ObjectParameter("util_Identifiant", util_Identifiant) :
+                new ObjectParameter("util_Identifiant", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Utilisateur>("Select_Utilisateur_By_User", util_IdentifiantParameter);
+        }
+    
+        public virtual ObjectResult<Utilisateur> Select_Utilisateur_By_User(string util_Identifiant, MergeOption mergeOption)
+        {
+            var util_IdentifiantParameter = util_Identifiant != null ?
+                new ObjectParameter("util_Identifiant", util_Identifiant) :
+                new ObjectParameter("util_Identifiant", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Utilisateur>("Select_Utilisateur_By_User", mergeOption, util_IdentifiantParameter);
+        }
+    
+        public virtual int Update_Utilisateur(Nullable<int> util_ID, string util_Nom, string util_Identifiant, string util_MotPasse, Nullable<int> svc_ID, Nullable<int> prof_ID)
+        {
+            var util_IDParameter = util_ID.HasValue ?
+                new ObjectParameter("util_ID", util_ID) :
+                new ObjectParameter("util_ID", typeof(int));
+    
+            var util_NomParameter = util_Nom != null ?
+                new ObjectParameter("util_Nom", util_Nom) :
+                new ObjectParameter("util_Nom", typeof(string));
+    
+            var util_IdentifiantParameter = util_Identifiant != null ?
+                new ObjectParameter("util_Identifiant", util_Identifiant) :
+                new ObjectParameter("util_Identifiant", typeof(string));
+    
+            var util_MotPasseParameter = util_MotPasse != null ?
+                new ObjectParameter("util_MotPasse", util_MotPasse) :
+                new ObjectParameter("util_MotPasse", typeof(string));
+    
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Utilisateur", util_IDParameter, util_NomParameter, util_IdentifiantParameter, util_MotPasseParameter, svc_IDParameter, prof_IDParameter);
+        }
+    
+        public virtual ObjectResult<Search_Utilisateur_Result> Search_Utilisateur(string mode, string search, Nullable<System.DateTime> dt1, Nullable<System.DateTime> dt2)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            var dt1Parameter = dt1.HasValue ?
+                new ObjectParameter("dt1", dt1) :
+                new ObjectParameter("dt1", typeof(System.DateTime));
+    
+            var dt2Parameter = dt2.HasValue ?
+                new ObjectParameter("dt2", dt2) :
+                new ObjectParameter("dt2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Search_Utilisateur_Result>("Search_Utilisateur", modeParameter, searchParameter, dt1Parameter, dt2Parameter);
+        }
+    
+        public virtual ObjectResult<Select_Service_By_Nom_Result> Select_Service_By_Nom()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Service_By_Nom_Result>("Select_Service_By_Nom");
+        }
     }
 }

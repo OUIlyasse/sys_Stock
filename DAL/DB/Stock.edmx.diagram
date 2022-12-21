@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="g_StockModel.Unite" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Unite_Mesure" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Unite_Type" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="g_StockModel.Utilisateur" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="g_StockModel.FK_Article_CodeBarre_Action" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Bon_Action" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Mouvement_Action" ManuallyRouted="false" />
@@ -49,9 +48,10 @@
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Rayonnage" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Mesure" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Profil" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Service" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Unite_Type_Unite_Mesure" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="g_StockModel.Utilisateur" Width="1.5" PointX="5.25" PointY="6.875" />
+        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Profil" />
+        <AssociationConnector Association="g_StockModel.FK_Utilisateur_Service" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

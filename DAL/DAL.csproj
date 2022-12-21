@@ -99,6 +99,9 @@
     <Compile Include="DB\Rayonnage.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Search_Utilisateur_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Select_Famille_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
@@ -111,7 +114,13 @@
     <Compile Include="DB\Select_Profil_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Select_Service_By_Nom_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Select_Service_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\select_vw_Utilisateur_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Service.cs">

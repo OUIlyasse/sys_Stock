@@ -33,14 +33,17 @@
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnFamille = new DevExpress.XtraBars.BarButtonItem();
             this.btnService = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProfil = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUtilisateur = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.btnProfil = new DevExpress.XtraBars.BarButtonItem();
+            this.mdi_Manager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mdi_Manager)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -57,9 +60,10 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnFamille,
             this.btnService,
-            this.btnProfil});
+            this.btnProfil,
+            this.btnUtilisateur});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 3;
+            this.barManager1.MaxItemId = 4;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -71,7 +75,8 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnService),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnProfil)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnProfil),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnUtilisateur)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -97,6 +102,27 @@
             this.btnService.Name = "btnService";
             this.btnService.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.False;
             this.btnService.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnService_ItemClick);
+            // 
+            // btnProfil
+            // 
+            this.btnProfil.Caption = "&Profil";
+            this.btnProfil.Id = 2;
+            this.btnProfil.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfil.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnProfil.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
+            this.btnProfil.Name = "btnProfil";
+            this.btnProfil.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.True;
+            this.btnProfil.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProfil_ItemClick);
+            // 
+            // btnUtilisateur
+            // 
+            this.btnUtilisateur.Caption = "&Utilisateur";
+            this.btnUtilisateur.Id = 3;
+            this.btnUtilisateur.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUtilisateur.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnUtilisateur.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U));
+            this.btnUtilisateur.Name = "btnUtilisateur";
+            this.btnUtilisateur.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUtilisateur_ItemClick);
             // 
             // bar3
             // 
@@ -152,16 +178,20 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnFamille)});
             this.bar1.Text = "Tools";
             // 
-            // btnProfil
+            // mdi_Manager
             // 
-            this.btnProfil.Caption = "&Profil";
-            this.btnProfil.Id = 2;
-            this.btnProfil.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfil.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnProfil.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
-            this.btnProfil.Name = "btnProfil";
-            this.btnProfil.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.True;
-            this.btnProfil.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProfil_ItemClick);
+            this.mdi_Manager.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mdi_Manager.Appearance.Options.UseFont = true;
+            this.mdi_Manager.AppearancePage.Header.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mdi_Manager.AppearancePage.Header.Options.UseFont = true;
+            this.mdi_Manager.AppearancePage.HeaderActive.BackColor = System.Drawing.Color.DarkBlue;
+            this.mdi_Manager.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mdi_Manager.AppearancePage.HeaderActive.Options.UseBackColor = true;
+            this.mdi_Manager.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.mdi_Manager.AppearancePage.PageClient.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mdi_Manager.AppearancePage.PageClient.Options.UseFont = true;
+            this.mdi_Manager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeader;
+            this.mdi_Manager.MdiParent = this;
             // 
             // frmMain
             // 
@@ -180,6 +210,7 @@
             this.Text = "Gestion de Stock";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mdi_Manager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +229,7 @@
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnService;
         private DevExpress.XtraBars.BarButtonItem btnProfil;
+        private DevExpress.XtraBars.BarButtonItem btnUtilisateur;
+        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdi_Manager;
     }
 }

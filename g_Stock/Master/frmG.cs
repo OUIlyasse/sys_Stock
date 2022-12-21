@@ -42,6 +42,22 @@ namespace g_Stock.Master
             }
         }
 
+        public virtual void verifyButtons(Form f, string txt)
+        {
+            if (f.Text == txt)
+            {
+                btnAjouter.Enabled = true;
+                btnModifier.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+            else
+            {
+                btnAjouter.Enabled = false;
+                btnModifier.Enabled = true;
+                btnSupprimer.Enabled = true;
+            }
+        }
+
         #endregion Codes
 
         public frmG()
@@ -62,6 +78,11 @@ namespace g_Stock.Master
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             Delete_Data();
+        }
+
+        private void frmG_Load(object sender, EventArgs e)
+        {
+            verifyButtons(new Form(), "");
         }
     }
 }

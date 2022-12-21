@@ -13,6 +13,36 @@ namespace g_Stock.Master
 {
     public partial class frmMain : Form
     {
+        #region Codes
+
+        public void OpenForm(Form _Form)
+        {
+            if (!isFormActivated(_Form))
+            {
+                _Form.MdiParent = this;
+                _Form.Show();
+            }
+        }
+
+        private bool isFormActivated(Form _Form)
+        {
+            bool isOpen = false;
+            if (MdiChildren.Count() > 0)
+            {
+                foreach (var item in MdiChildren)
+                {
+                    if (_Form.Name == item.Name)
+                    {
+                        mdi_Manager.Pages[item].MdiChild.Activate();
+                        isOpen = true;
+                    }
+                }
+            }
+            return isOpen;
+        }
+
+        #endregion Codes
+
         public frmMain()
         {
             InitializeComponent();
@@ -34,6 +64,13 @@ namespace g_Stock.Master
         {
             frmProfil frm = new frmProfil();
             frm.ShowDialog();
+        }
+
+        private void btnUtilisateur_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmUtilisateur frm = new frmUtilisateur();
+
+            OpenForm(frm);
         }
     }
 }

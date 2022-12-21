@@ -175,22 +175,28 @@ namespace g_Stock.PL
 
         private void gvFamille_DoubleClick(object sender, EventArgs e)
         {
-            if (gvFamille.RowCount > 0)
+            try
             {
-                try
+                if (gvFamille.RowCount > 0)
                 {
-                    Verify_Buttons(false);
-                    var row = gvFamille.FocusedRowHandle;
-                    int id = int.Parse(gvFamille.GetRowCellValue(row, "fam_ID").ToString());
-                    Refresh();
-                    Famille f = db.Select_Famille_By_ID(id).FirstOrDefault();
-                    txtFamille.Text = f.fam_Nom;
-                    txtDescription.Text = f.fam_Descripction;
+                    try
+                    {
+                        Verify_Buttons(false);
+                        var row = gvFamille.FocusedRowHandle;
+                        int id = int.Parse(gvFamille.GetRowCellValue(row, "fam_ID").ToString());
+                        Refresh();
+                        Famille f = db.Select_Famille_By_ID(id).FirstOrDefault();
+                        txtFamille.Text = f.fam_Nom;
+                        txtDescription.Text = f.fam_Descripction;
+                    }
+                    catch (Exception ex)
+                    {
+                        iTools.iMessage.errorMsg("Erreur", ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    iTools.iMessage.errorMsg("Erreur", ex.Message);
-                }
+            }
+            catch (Exception)
+            {
             }
         }
     }

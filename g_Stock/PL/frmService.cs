@@ -55,7 +55,7 @@ namespace g_Stock.PL
                         }
                         if (db.Service.Any(f => f.svc_Nom == txtService.Text.ToUpper() && f.svc_Status == true))
                         {
-                            iTools.iMessage.warningMsg("Attention", "Ce service est excite déjà");
+                            iTools.iMessage.warningMsg("Attention", "Ce service est existe déjà");
                             txtService.Focus();
                             return;
                         }
@@ -154,21 +154,27 @@ namespace g_Stock.PL
 
         private void gvService_DoubleClick(object sender, EventArgs e)
         {
-            if (gvService.RowCount > 0)
+            try
             {
-                try
+                if (gvService.RowCount > 0)
                 {
-                    Verify_Buttons(false);
-                    var row = gvService.FocusedRowHandle;
-                    int id = int.Parse(gvService.GetRowCellValue(row, "svc_ID").ToString());
-                    Service f = db.Select_Service_By_ID(id).FirstOrDefault();
-                    txtService.Text = f.svc_Nom;
-                    txtDescription.Text = f.svc_description;
+                    try
+                    {
+                        Verify_Buttons(false);
+                        var row = gvService.FocusedRowHandle;
+                        int id = int.Parse(gvService.GetRowCellValue(row, "svc_ID").ToString());
+                        Service f = db.Select_Service_By_ID(id).FirstOrDefault();
+                        txtService.Text = f.svc_Nom;
+                        txtDescription.Text = f.svc_description;
+                    }
+                    catch (Exception ex)
+                    {
+                        iTools.iMessage.errorMsg("Erreur", ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    iTools.iMessage.errorMsg("Erreur", ex.Message);
-                }
+            }
+            catch (Exception)
+            {
             }
         }
 

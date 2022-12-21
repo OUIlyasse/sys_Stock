@@ -114,6 +114,7 @@
             this.Name = "frmG";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmG_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
