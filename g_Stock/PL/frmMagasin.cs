@@ -63,7 +63,7 @@ namespace g_Stock.PL
                         }
                         else
                         {
-                            db.Insert_Magasin(txtMagasin.Text.Trim().ToUpper(), txtVille.Text.Trim().ToUpper(), txtDescription.Text);
+                            db.Insert_Magasin(db.MaxID_Magasin().FirstOrDefault(), txtMagasin.Text.Trim().ToUpper(), txtVille.Text.Trim().ToUpper(), txtDescription.Text);
                             db.SaveChanges();
                             transaction.Commit();
                             //form.txtStatus.Caption = "Votre code a bien ajouté";

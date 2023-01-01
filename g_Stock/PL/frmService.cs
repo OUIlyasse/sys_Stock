@@ -61,7 +61,7 @@ namespace g_Stock.PL
                         }
                         else
                         {
-                            db.Insert_Service(txtService.Text.Trim().ToUpper(), txtDescription.Text, DateTime.Now);
+                            db.Insert_Service(db.MaxID_Service().FirstOrDefault(), txtService.Text.Trim().ToUpper(), txtDescription.Text, DateTime.Now);
                             db.SaveChanges();
                             transaction.Commit();
                             //form.txtStatus.Caption = "Votre code a bien ajouté";

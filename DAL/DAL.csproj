@@ -102,6 +102,15 @@
     <Compile Include="DB\Search_Utilisateur_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Select_Armoire_By_ID_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Armoire_By_Rayonage_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Armoire_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Select_Famille_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
@@ -115,6 +124,12 @@
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Select_Profil_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Rayonnage_By_ID_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Rayonnage_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Select_Service_By_Nom_Result.cs">

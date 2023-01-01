@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="act_ID" />
           </Key>
-          <Property Name="act_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="act_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="act_Nom" Type="nvarchar" MaxLength="350" />
           <Property Name="act_Description" Type="nvarchar(max)" />
           <Property Name="act_Status" Type="bit" />
@@ -18,9 +18,10 @@
           <Key>
             <PropertyRef Name="arm_ID" />
           </Key>
-          <Property Name="arm_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arm_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="arm_Nom" Type="nvarchar" MaxLength="350" />
           <Property Name="arm_Description" Type="nvarchar(max)" />
+          <Property Name="rayo_ID" Type="int" />
           <Property Name="arm_Status" Type="bit" />
         </EntityType>
         <EntityType Name="Article_CodeBarre">
@@ -100,7 +101,7 @@
           <Key>
             <PropertyRef Name="eplc_ID" />
           </Key>
-          <Property Name="eplc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eplc_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="eplc_Date" Type="date" />
           <Property Name="art_ID" Type="int" />
           <Property Name="ref_ID" Type="int" />
@@ -113,7 +114,7 @@
           <Key>
             <PropertyRef Name="fam_ID" />
           </Key>
-          <Property Name="fam_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fam_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="fam_Nom" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="fam_Descripction" Type="nvarchar(max)" />
           <Property Name="fam_Status" Type="bit" />
@@ -138,7 +139,7 @@
           <Key>
             <PropertyRef Name="mags_ID" />
           </Key>
-          <Property Name="mags_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mags_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="mags_Magasin" Type="nvarchar" MaxLength="250" />
           <Property Name="mags_Ville" Type="nvarchar(max)" />
           <Property Name="mags_Description" Type="nvarchar(max)" />
@@ -161,7 +162,7 @@
           <Key>
             <PropertyRef Name="prof_ID" />
           </Key>
-          <Property Name="prof_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prof_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="prof_Nom" Type="nvarchar" MaxLength="250" />
           <Property Name="prof_Description" Type="nvarchar(max)" />
           <Property Name="prof_Status" Type="bit" />
@@ -170,17 +171,16 @@
           <Key>
             <PropertyRef Name="rayo_ID" />
           </Key>
-          <Property Name="rayo_ID" Type="int" Nullable="false" />
+          <Property Name="rayo_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="rayo_Nom" Type="nvarchar" MaxLength="200" />
           <Property Name="rayo_Description" Type="nvarchar(max)" />
-          <Property Name="arm_ID" Type="int" />
           <Property Name="rayo_Status" Type="bit" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="svc_ID" />
           </Key>
-          <Property Name="svc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="svc_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="svc_Nom" Type="nvarchar" MaxLength="250" />
           <Property Name="svc_description" Type="nvarchar(max)" />
           <Property Name="svc_Date" Type="date" />
@@ -198,7 +198,7 @@
           <Key>
             <PropertyRef Name="unit_M_ID" />
           </Key>
-          <Property Name="unit_M_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit_M_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="unit_M_Nom" Type="nvarchar" MaxLength="350" />
           <Property Name="unit_M_Status" Type="bit" />
         </EntityType>
@@ -206,7 +206,7 @@
           <Key>
             <PropertyRef Name="unit_ID" />
           </Key>
-          <Property Name="unit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="unit_Nom" Type="nvarchar" MaxLength="50" />
           <Property Name="unit_M_ID" Type="int" />
           <Property Name="unit_Status" Type="bit" />
@@ -215,7 +215,7 @@
           <Key>
             <PropertyRef Name="util_ID" />
           </Key>
-          <Property Name="util_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="util_ID" Type="int" Nullable="false" />
           <Property Name="util_Nom" Type="nvarchar(max)" />
           <Property Name="util_Date" Type="date" />
           <Property Name="util_Identifiant" Type="nvarchar(max)" />
@@ -223,6 +223,18 @@
           <Property Name="svc_ID" Type="int" />
           <Property Name="prof_ID" Type="int" />
         </EntityType>
+        <Association Name="FK_Armoire_Rayonnage">
+          <End Role="Rayonnage" Type="Self.Rayonnage" Multiplicity="0..1" />
+          <End Role="Armoire" Type="Self.Armoire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayonnage">
+              <PropertyRef Name="rayo_ID" />
+            </Principal>
+            <Dependent Role="Armoire">
+              <PropertyRef Name="rayo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Article_CodeBarre_Action">
           <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
           <End Role="Article_CodeBarre" Type="Self.Article_CodeBarre" Multiplicity="*" />
@@ -547,6 +559,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Count_Rayonnage_By_Nom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Count_vw_rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="arm_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Delete_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
         </Function>
@@ -556,31 +577,56 @@
         <Function Name="Delete_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Delete_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Delete_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Delete_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="util_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Insert_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="arm_ID" Type="int" Mode="In" />
+          <Parameter Name="arm_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="arm_Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Armoire_By_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="arm_ID" Type="int" Mode="In" />
+          <Parameter Name="arm_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="arm_Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="fam_Descripction" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Insert_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mags_ID" Type="int" Mode="In" />
           <Parameter Name="mags_Magasin" Type="nvarchar" Mode="In" />
           <Parameter Name="mags_Ville" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="mags_Description" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Insert_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prof_ID" Type="int" Mode="In" />
           <Parameter Name="prof_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="prof_Description" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="Insert_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+          <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="rayo_Description" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Insert_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="svc_Date" Type="date" Mode="In" />
         </Function>
         <Function Name="Insert_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="util_ID" Type="int" Mode="In" />
           <Parameter Name="util_Nom" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="util_Date" Type="date" Mode="In" />
           <Parameter Name="util_Identifiant" Type="nvarchar(max)" Mode="In" />
@@ -588,11 +634,40 @@
           <Parameter Name="svc_ID" Type="int" Mode="In" />
           <Parameter Name="prof_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="MaxID_Action" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Article_CodeBarre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Article_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Article_Photo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Article_Reference" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_BL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_BL_Article" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Emplacement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Fournisseur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Magasin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Mouvement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Unite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Unite_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Search_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mode" Type="nvarchar" Mode="In" />
           <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="dt1" Type="date" Mode="In" />
           <Parameter Name="dt2" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Select_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Armoire_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="arm_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Armoire_By_Rayonage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Select_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Famille_By_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -612,6 +687,13 @@
         <Function Name="Select_Profil_By_Profil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prof_Nom" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Select_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Rayonnage_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Rayonnage_By_Nom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Select_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Service_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
@@ -627,6 +709,11 @@
           <Parameter Name="util_Identifiant" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="select_vw_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Update_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="arm_ID" Type="int" Mode="In" />
+          <Parameter Name="arm_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="arm_Description" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Update_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
           <Parameter Name="fam_Nom" Type="nvarchar" Mode="In" />
@@ -642,6 +729,11 @@
           <Parameter Name="prof_ID" Type="int" Mode="In" />
           <Parameter Name="prof_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="prof_Description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Rayonnage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rayo_ID" Type="int" Mode="In" />
+          <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="rayo_Description" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Update_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
@@ -677,6 +769,10 @@
           <EntitySet Name="Unite_Mesure" EntityType="Self.Unite_Mesure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unite_Type" EntityType="Self.Unite_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Armoire_Rayonnage" Association="Self.FK_Armoire_Rayonnage">
+            <End Role="Rayonnage" EntitySet="Rayonnage" />
+            <End Role="Armoire" EntitySet="Armoire" />
+          </AssociationSet>
           <AssociationSet Name="FK_Article_CodeBarre_Action" Association="Self.FK_Article_CodeBarre_Action">
             <End Role="Action" EntitySet="Action" />
             <End Role="Article_CodeBarre" EntitySet="Article_CodeBarre" />
@@ -811,6 +907,8 @@
           <Property Name="arm_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="arm_Status" Type="Boolean" />
           <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Armoire" FromRole="Armoire" ToRole="Emplacement" />
+          <Property Name="rayo_ID" Type="Int32" />
+          <NavigationProperty Name="Rayonnage" Relationship="g_StockModel.FK_Armoire_Rayonnage" FromRole="Armoire" ToRole="Rayonnage" />
         </EntityType>
         <EntityType Name="Article_CodeBarre">
           <Key>
@@ -926,7 +1024,7 @@
           <NavigationProperty Name="Article_Info" Relationship="Self.FK_Emplacement_Article" FromRole="Emplacement" ToRole="Article_Info" />
           <NavigationProperty Name="Article_Reference" Relationship="Self.FK_Emplacement_Reference" FromRole="Emplacement" ToRole="Article_Reference" />
           <NavigationProperty Name="Magasin" Relationship="Self.FK_Emplacement_Magasin" FromRole="Emplacement" ToRole="Magasin" />
-          <NavigationProperty Name="Rayonnage" Relationship="Self.FK_Emplacement_Rayonnage" FromRole="Emplacement" ToRole="Rayonnage" />
+          <NavigationProperty Name="Rayonnage" Relationship="g_StockModel.FK_Emplacement_Rayonnage" FromRole="Emplacement" ToRole="Rayonnage" />
         </EntityType>
         <EntityType Name="Famille">
           <Key>
@@ -992,17 +1090,6 @@
           <Property Name="prof_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="prof_Status" Type="Boolean" />
           <NavigationProperty Name="Utilisateur" Relationship="g_StockModel.FK_Utilisateur_Profil" FromRole="Profil" ToRole="Utilisateur" />
-        </EntityType>
-        <EntityType Name="Rayonnage">
-          <Key>
-            <PropertyRef Name="rayo_ID" />
-          </Key>
-          <Property Name="rayo_ID" Type="Int32" Nullable="false" />
-          <Property Name="rayo_Nom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="rayo_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="arm_ID" Type="Int32" />
-          <Property Name="rayo_Status" Type="Boolean" />
-          <NavigationProperty Name="Emplacement" Relationship="Self.FK_Emplacement_Rayonnage" FromRole="Rayonnage" ToRole="Emplacement" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -1300,18 +1387,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Emplacement_Rayonnage">
-          <End Role="Rayonnage" Type="Self.Rayonnage" Multiplicity="0..1" />
-          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rayonnage">
-              <PropertyRef Name="rayo_ID" />
-            </Principal>
-            <Dependent Role="Emplacement">
-              <PropertyRef Name="rayo_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Mouvement_Unite_Mesure">
           <End Role="Unite_Mesure" Type="Self.Unite_Mesure" Multiplicity="0..1" />
           <End Role="Mouvement" Type="Self.Mouvement" Multiplicity="*" />
@@ -1363,7 +1438,6 @@
           <EntitySet Name="Magasin" EntityType="Self.Magasin" />
           <EntitySet Name="Mouvement" EntityType="Self.Mouvement" />
           <EntitySet Name="Profil" EntityType="Self.Profil" />
-          <EntitySet Name="Rayonnage" EntityType="Self.Rayonnage" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="Unite" EntityType="Self.Unite" />
           <EntitySet Name="Unite_Mesure" EntityType="Self.Unite_Mesure" />
@@ -1452,10 +1526,6 @@
             <End Role="Magasin" EntitySet="Magasin" />
             <End Role="Emplacement" EntitySet="Emplacement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Emplacement_Rayonnage" Association="Self.FK_Emplacement_Rayonnage">
-            <End Role="Rayonnage" EntitySet="Rayonnage" />
-            <End Role="Emplacement" EntitySet="Emplacement" />
-          </AssociationSet>
           <AssociationSet Name="FK_Mouvement_Unite_Mesure" Association="Self.FK_Mouvement_Unite_Mesure">
             <End Role="Unite_Mesure" EntitySet="Unite_Mesure" />
             <End Role="Mouvement" EntitySet="Mouvement" />
@@ -1472,6 +1542,7 @@
           <Parameter Name="fam_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Famille">
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
             <Parameter Name="fam_Nom" Mode="In" Type="String" />
             <Parameter Name="fam_Descripction" Mode="In" Type="String" />
           </FunctionImport>
@@ -1491,6 +1562,7 @@
           <Parameter Name="svc_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Service">
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
             <Parameter Name="svc_Nom" Mode="In" Type="String" />
             <Parameter Name="svc_description" Mode="In" Type="String" />
             <Parameter Name="svc_Date" Mode="In" Type="DateTime" />
@@ -1511,6 +1583,7 @@
           <Parameter Name="prof_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Profil">
+            <Parameter Name="prof_ID" Mode="In" Type="Int32" />
             <Parameter Name="prof_Nom" Mode="In" Type="String" />
             <Parameter Name="prof_Description" Mode="In" Type="String" />
           </FunctionImport>
@@ -1531,6 +1604,7 @@
           <Parameter Name="util_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Utilisateur">
+            <Parameter Name="util_ID" Mode="In" Type="Int32" />
             <Parameter Name="util_Nom" Mode="In" Type="String" />
             <Parameter Name="util_Date" Mode="In" Type="DateTime" />
             <Parameter Name="util_Identifiant" Mode="In" Type="String" />
@@ -1572,6 +1646,7 @@
           <Parameter Name="mags_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Magasin">
+            <Parameter Name="mags_ID" Mode="In" Type="Int32" />
             <Parameter Name="mags_Magasin" Mode="In" Type="String" />
             <Parameter Name="mags_Ville" Mode="In" Type="String" />
             <Parameter Name="mags_Description" Mode="In" Type="String" />
@@ -1584,7 +1659,91 @@
             <Parameter Name="mags_Description" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Select_Magasin_By_ID" EntitySet="Magasin" ReturnType="Collection(g_StockModel.Magasin)">
-            <Parameter Name="mags_ID" Mode="In" Type="Int32" />
+          <Parameter Name="mags_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Armoire" ReturnType="Collection(g_StockModel.Select_Armoire_Result)" >
+          <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Armoire">
+          <Parameter Name="arm_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Rayonnage">
+          <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Armoire">
+            <Parameter Name="arm_ID" Mode="In" Type="Int32" />
+            <Parameter Name="arm_Nom" Mode="In" Type="String" />
+            <Parameter Name="arm_Description" Mode="In" Type="String" />
+            <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Rayonnage">
+            <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+            <Parameter Name="rayo_Nom" Mode="In" Type="String" />
+            <Parameter Name="rayo_Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Armoire_By_Rayonage" ReturnType="Collection(g_StockModel.Select_Armoire_By_Rayonage_Result)">
+          <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Rayonnage" ReturnType="Collection(g_StockModel.Select_Rayonnage_Result)" />
+          <FunctionImport Name="Select_Rayonnage_By_ID" EntitySet="Rayonnage" ReturnType="Collection(g_StockModel.Rayonnage)">
+          <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Armoire">
+            <Parameter Name="arm_ID" Mode="In" Type="Int32" />
+            <Parameter Name="arm_Nom" Mode="In" Type="String" />
+            <Parameter Name="arm_Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Rayonnage">
+            <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+            <Parameter Name="rayo_Nom" Mode="In" Type="String" />
+            <Parameter Name="rayo_Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Rayonnage_By_Nom" EntitySet="Rayonnage" ReturnType="Collection(g_StockModel.Rayonnage)">
+          <Parameter Name="rayo_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Rayonnage" EntityType="g_StockModel.Rayonnage" />
+          <AssociationSet Name="FK_Armoire_Rayonnage" Association="g_StockModel.FK_Armoire_Rayonnage">
+            <End Role="Rayonnage" EntitySet="Rayonnage" />
+            <End Role="Armoire" EntitySet="Armoire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emplacement_Rayonnage" Association="g_StockModel.FK_Emplacement_Rayonnage">
+            <End Role="Rayonnage" EntitySet="Rayonnage" />
+            <End Role="Emplacement" EntitySet="Emplacement" />
+          </AssociationSet>
+          <FunctionImport Name="Insert_Armoire_By_Rayonnage">
+            <Parameter Name="arm_ID" Mode="In" Type="Int32" />
+            <Parameter Name="arm_Nom" Mode="In" Type="String" />
+            <Parameter Name="arm_Description" Mode="In" Type="String" />
+            <Parameter Name="rayo_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MaxID_Armoire" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Article_CodeBarre" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Article_Info" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Article_Photo" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Article_Reference" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_BL" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_BL_Article" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Emplacement" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Famille" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Fournisseur" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Magasin" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Mouvement" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Profil" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Rayonnage" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Service" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Unite" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Unite_Mesure" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Unite_Type" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Utilisateur" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxID_Action" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Select_Armoire_By_ID" EntitySet="Armoire" ReturnType="Collection(g_StockModel.Armoire)">
+          <Parameter Name="arm_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Count_vw_rayonnage" ReturnType="Collection(Int32)" >
+          <Parameter Name="rayo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Count_Rayonnage_By_Nom" ReturnType="Collection(Int32)">
+            <Parameter Name="rayo_Nom" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Famille_Result">
@@ -1680,6 +1839,66 @@
           <Property Type="String" Name="mags_Ville" Nullable="true" />
           <Property Type="String" Name="mags_Description" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="Select_Armoire_Result">
+          <Property Type="Int32" Name="arm_ID" Nullable="false" />
+          <Property Type="String" Name="arm_Nom" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="arm_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Armoire_By_Rayonage_Result">
+          <Property Type="Int32" Name="arm_ID" Nullable="false" />
+          <Property Type="String" Name="arm_Nom" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="arm_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Rayonnage_Result">
+          <Property Type="Int32" Name="rayo_ID" Nullable="false" />
+          <Property Type="String" Name="rayo_Nom" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="rayo_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Rayonnage_By_ID_Result">
+          <Property Type="Int32" Name="rayo_ID" Nullable="false" />
+          <Property Type="String" Name="rayo_Nom" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="rayo_Description" Nullable="true" />
+          <Property Type="Boolean" Name="rayo_Status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Rayonnage">
+          <Key>
+            <PropertyRef Name="rayo_ID" />
+          </Key>
+          <Property Name="rayo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rayo_Nom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rayo_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="rayo_Status" Type="Boolean" />
+          <NavigationProperty Name="Armoire" Relationship="g_StockModel.FK_Armoire_Rayonnage" FromRole="Rayonnage" ToRole="Armoire" />
+          <NavigationProperty Name="Emplacement" Relationship="g_StockModel.FK_Emplacement_Rayonnage" FromRole="Rayonnage" ToRole="Emplacement" />
+        </EntityType>
+        <Association Name="FK_Armoire_Rayonnage">
+          <End Type="g_StockModel.Rayonnage" Role="Rayonnage" Multiplicity="0..1" />
+          <End Type="g_StockModel.Armoire" Role="Armoire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayonnage">
+              <PropertyRef Name="rayo_ID" />
+            </Principal>
+            <Dependent Role="Armoire">
+              <PropertyRef Name="rayo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emplacement_Rayonnage">
+          <End Type="g_StockModel.Rayonnage" Role="Rayonnage" Multiplicity="0..1" />
+          <End Type="g_StockModel.Emplacement" Role="Emplacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayonnage">
+              <PropertyRef Name="rayo_ID" />
+            </Principal>
+            <Dependent Role="Emplacement">
+              <PropertyRef Name="rayo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Select_Armoire_By_ID_Result">
+          <Property Type="String" Name="arm_Nom" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="arm_Description" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1699,11 +1918,30 @@
           <EntitySetMapping Name="Armoire">
             <EntityTypeMapping TypeName="g_StockModel.Armoire">
               <MappingFragment StoreEntitySet="Armoire">
+                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
                 <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
                 <ScalarProperty Name="arm_Nom" ColumnName="arm_Nom" />
                 <ScalarProperty Name="arm_Description" ColumnName="arm_Description" />
                 <ScalarProperty Name="arm_Status" ColumnName="arm_Status" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Armoire">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Armoire">
+                  <ScalarProperty Name="arm_ID" ParameterName="arm_ID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Armoire">
+                  <ScalarProperty Name="arm_Description" ParameterName="arm_Description" Version="Current" />
+                  <ScalarProperty Name="arm_Nom" ParameterName="arm_Nom" Version="Current" />
+                  <ScalarProperty Name="arm_ID" ParameterName="arm_ID" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Armoire">
+                  <ScalarProperty Name="arm_ID" ParameterName="arm_ID" />
+                  <ScalarProperty Name="rayo_ID" ParameterName="rayo_ID" />
+                  <ScalarProperty Name="arm_Description" ParameterName="arm_Description" />
+                  <ScalarProperty Name="arm_Nom" ParameterName="arm_Nom" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Article_CodeBarre">
@@ -1819,6 +2057,7 @@
                   <ScalarProperty Name="fam_ID" ParameterName="fam_ID" Version="Current" />
                 </UpdateFunction>
                 <InsertFunction FunctionName="g_StockModel.Store.Insert_Famille">
+                  <ScalarProperty Name="fam_ID" ParameterName="fam_ID" />
                   <ScalarProperty Name="fam_Descripction" ParameterName="fam_Descripction" />
                   <ScalarProperty Name="fam_Nom" ParameterName="fam_Nom" />
                 </InsertFunction>
@@ -1864,6 +2103,7 @@
                   <ScalarProperty Name="mags_ID" ParameterName="mags_ID" Version="Current" />
                 </UpdateFunction>
                 <InsertFunction FunctionName="g_StockModel.Store.Insert_Magasin">
+                  <ScalarProperty Name="mags_ID" ParameterName="mags_ID" />
                   <ScalarProperty Name="mags_Description" ParameterName="mags_Description" />
                   <ScalarProperty Name="mags_Ville" ParameterName="mags_Ville" />
                   <ScalarProperty Name="mags_Magasin" ParameterName="mags_Magasin" />
@@ -1894,16 +2134,22 @@
                 <ScalarProperty Name="prof_Status" ColumnName="prof_Status" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rayonnage">
-            <EntityTypeMapping TypeName="g_StockModel.Rayonnage">
-              <MappingFragment StoreEntitySet="Rayonnage">
-                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
-                <ScalarProperty Name="rayo_Nom" ColumnName="rayo_Nom" />
-                <ScalarProperty Name="rayo_Description" ColumnName="rayo_Description" />
-                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
-                <ScalarProperty Name="rayo_Status" ColumnName="rayo_Status" />
-              </MappingFragment>
+            <EntityTypeMapping TypeName="g_StockModel.Profil">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Profil">
+                  <ScalarProperty Name="prof_Description" ParameterName="prof_Description" />
+                  <ScalarProperty Name="prof_Nom" ParameterName="prof_Nom" />
+                  <ScalarProperty Name="prof_ID" ParameterName="prof_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Profil">
+                  <ScalarProperty Name="prof_Description" ParameterName="prof_Description" Version="Current" />
+                  <ScalarProperty Name="prof_Nom" ParameterName="prof_Nom" Version="Current" />
+                  <ScalarProperty Name="prof_ID" ParameterName="prof_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Profil">
+                  <ScalarProperty Name="prof_ID" ParameterName="prof_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service">
@@ -1927,6 +2173,7 @@
                   <ScalarProperty Name="svc_ID" ParameterName="svc_ID" Version="Current" />
                 </UpdateFunction>
                 <InsertFunction FunctionName="g_StockModel.Store.Insert_Service">
+                  <ScalarProperty Name="svc_ID" ParameterName="svc_ID" />
                   <ScalarProperty Name="svc_Date" ParameterName="svc_Date" />
                   <ScalarProperty Name="svc_description" ParameterName="svc_description" />
                   <ScalarProperty Name="svc_Nom" ParameterName="svc_Nom" />
@@ -2043,6 +2290,7 @@
                   <ScalarProperty Name="util_ID" ParameterName="util_ID" />
                 </DeleteFunction>
                 <InsertFunction FunctionName="g_StockModel.Store.Insert_Utilisateur">
+                  <ScalarProperty Name="util_ID" ParameterName="util_ID" />
                   <ScalarProperty Name="prof_ID" ParameterName="prof_ID" />
                   <ScalarProperty Name="svc_ID" ParameterName="svc_ID" />
                   <ScalarProperty Name="util_MotPasse" ParameterName="util_MotPasse" />
@@ -2095,6 +2343,94 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Update_Magasin" FunctionName="g_StockModel.Store.Update_Magasin" />
           <FunctionImportMapping FunctionImportName="Select_Magasin_By_ID" FunctionName="g_StockModel.Store.Select_Magasin_By_ID" />
+          <FunctionImportMapping FunctionImportName="Select_Armoire" FunctionName="g_StockModel.Store.Select_Armoire">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Armoire_Result">
+                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
+                <ScalarProperty Name="arm_Nom" ColumnName="arm_Nom" />
+                <ScalarProperty Name="arm_Description" ColumnName="arm_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Armoire" FunctionName="g_StockModel.Store.Delete_Armoire" />
+          <FunctionImportMapping FunctionImportName="Delete_Rayonnage" FunctionName="g_StockModel.Store.Delete_Rayonnage" />
+          <FunctionImportMapping FunctionImportName="Insert_Armoire" FunctionName="g_StockModel.Store.Insert_Armoire" />
+          <FunctionImportMapping FunctionImportName="Insert_Rayonnage" FunctionName="g_StockModel.Store.Insert_Rayonnage" />
+          <FunctionImportMapping FunctionImportName="Select_Armoire_By_Rayonage" FunctionName="g_StockModel.Store.Select_Armoire_By_Rayonage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Armoire_By_Rayonage_Result">
+                <ScalarProperty Name="arm_ID" ColumnName="arm_ID" />
+                <ScalarProperty Name="arm_Nom" ColumnName="arm_Nom" />
+                <ScalarProperty Name="arm_Description" ColumnName="arm_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_Rayonnage" FunctionName="g_StockModel.Store.Select_Rayonnage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Rayonnage_Result">
+                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
+                <ScalarProperty Name="rayo_Nom" ColumnName="rayo_Nom" />
+                <ScalarProperty Name="rayo_Description" ColumnName="rayo_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_Rayonnage_By_ID" FunctionName="g_StockModel.Store.Select_Rayonnage_By_ID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Update_Armoire" FunctionName="g_StockModel.Store.Update_Armoire" />
+          <FunctionImportMapping FunctionImportName="Update_Rayonnage" FunctionName="g_StockModel.Store.Update_Rayonnage" />
+          <FunctionImportMapping FunctionImportName="Select_Rayonnage_By_Nom" FunctionName="g_StockModel.Store.Select_Rayonnage_By_Nom" />
+          <EntitySetMapping Name="Rayonnage">
+            <EntityTypeMapping TypeName="g_StockModel.Rayonnage">
+              <MappingFragment StoreEntitySet="Rayonnage">
+                <ScalarProperty Name="rayo_Status" ColumnName="rayo_Status" />
+                <ScalarProperty Name="rayo_Description" ColumnName="rayo_Description" />
+                <ScalarProperty Name="rayo_Nom" ColumnName="rayo_Nom" />
+                <ScalarProperty Name="rayo_ID" ColumnName="rayo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="g_StockModel.Rayonnage">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="g_StockModel.Store.Delete_Rayonnage">
+                  <ScalarProperty Name="rayo_ID" ParameterName="rayo_ID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="g_StockModel.Store.Update_Rayonnage">
+                  <ScalarProperty Name="rayo_Description" ParameterName="rayo_Description" Version="Current" />
+                  <ScalarProperty Name="rayo_Nom" ParameterName="rayo_Nom" Version="Current" />
+                  <ScalarProperty Name="rayo_ID" ParameterName="rayo_ID" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="g_StockModel.Store.Insert_Rayonnage">
+                  <ScalarProperty Name="rayo_ID" ParameterName="rayo_ID" />
+                  <ScalarProperty Name="rayo_Description" ParameterName="rayo_Description" />
+                  <ScalarProperty Name="rayo_Nom" ParameterName="rayo_Nom" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Insert_Armoire_By_Rayonnage" FunctionName="g_StockModel.Store.Insert_Armoire_By_Rayonnage" />
+          <FunctionImportMapping FunctionImportName="MaxID_Armoire" FunctionName="g_StockModel.Store.MaxID_Armoire" />
+          <FunctionImportMapping FunctionImportName="MaxID_Article_CodeBarre" FunctionName="g_StockModel.Store.MaxID_Article_CodeBarre" />
+          <FunctionImportMapping FunctionImportName="MaxID_Article_Info" FunctionName="g_StockModel.Store.MaxID_Article_Info" />
+          <FunctionImportMapping FunctionImportName="MaxID_Article_Photo" FunctionName="g_StockModel.Store.MaxID_Article_Photo" />
+          <FunctionImportMapping FunctionImportName="MaxID_Article_Reference" FunctionName="g_StockModel.Store.MaxID_Article_Reference" />
+          <FunctionImportMapping FunctionImportName="MaxID_BL" FunctionName="g_StockModel.Store.MaxID_BL" />
+          <FunctionImportMapping FunctionImportName="MaxID_BL_Article" FunctionName="g_StockModel.Store.MaxID_BL_Article" />
+          <FunctionImportMapping FunctionImportName="MaxID_Emplacement" FunctionName="g_StockModel.Store.MaxID_Emplacement" />
+          <FunctionImportMapping FunctionImportName="MaxID_Famille" FunctionName="g_StockModel.Store.MaxID_Famille" />
+          <FunctionImportMapping FunctionImportName="MaxID_Fournisseur" FunctionName="g_StockModel.Store.MaxID_Fournisseur" />
+          <FunctionImportMapping FunctionImportName="MaxID_Magasin" FunctionName="g_StockModel.Store.MaxID_Magasin" />
+          <FunctionImportMapping FunctionImportName="MaxID_Mouvement" FunctionName="g_StockModel.Store.MaxID_Mouvement" />
+          <FunctionImportMapping FunctionImportName="MaxID_Profil" FunctionName="g_StockModel.Store.MaxID_Profil" />
+          <FunctionImportMapping FunctionImportName="MaxID_Rayonnage" FunctionName="g_StockModel.Store.MaxID_Rayonnage" />
+          <FunctionImportMapping FunctionImportName="MaxID_Service" FunctionName="g_StockModel.Store.MaxID_Service" />
+          <FunctionImportMapping FunctionImportName="MaxID_Unite" FunctionName="g_StockModel.Store.MaxID_Unite" />
+          <FunctionImportMapping FunctionImportName="MaxID_Unite_Mesure" FunctionName="g_StockModel.Store.MaxID_Unite_Mesure" />
+          <FunctionImportMapping FunctionImportName="MaxID_Unite_Type" FunctionName="g_StockModel.Store.MaxID_Unite_Type" />
+          <FunctionImportMapping FunctionImportName="MaxID_Utilisateur" FunctionName="g_StockModel.Store.MaxID_Utilisateur" />
+          <FunctionImportMapping FunctionImportName="MaxID_Action" FunctionName="g_StockModel.Store.MaxID_Action" />
+          <FunctionImportMapping FunctionImportName="Select_Armoire_By_ID" FunctionName="g_StockModel.Store.Select_Armoire_By_ID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Count_vw_rayonnage" FunctionName="g_StockModel.Store.Count_vw_rayonnage" />
+          <FunctionImportMapping FunctionImportName="Count_Rayonnage_By_Nom" FunctionName="g_StockModel.Store.Count_Rayonnage_By_Nom" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

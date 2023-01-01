@@ -61,7 +61,7 @@ namespace g_Stock.PL
                         }
                         else
                         {
-                            db.Insert_Famille(txtFamille.Text.Trim().ToUpper(), txtDescription.Text);
+                            db.Insert_Famille(db.MaxID_Famille().FirstOrDefault(), txtFamille.Text.Trim().ToUpper(), txtDescription.Text);
                             db.SaveChanges();
                             transaction.Commit();
                             //form.txtStatus.Caption = "Votre code a bien ajouté";

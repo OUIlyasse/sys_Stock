@@ -62,7 +62,7 @@ namespace g_Stock.PL
                         }
                         else
                         {
-                            db.Insert_Profil(txtProfil.Text.Trim().ToUpper(), txtDescription.Text);
+                            db.Insert_Profil(db.MaxID_Profil().FirstOrDefault(), txtProfil.Text.Trim().ToUpper(), txtDescription.Text);
                             db.SaveChanges();
                             transaction.Commit();
                             //form.txtStatus.Caption = "Votre code a bien ajouté";

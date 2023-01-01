@@ -17,15 +17,17 @@ namespace DAL.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rayonnage()
         {
+            this.Armoire = new HashSet<Armoire>();
             this.Emplacement = new HashSet<Emplacement>();
         }
     
         public int rayo_ID { get; set; }
         public string rayo_Nom { get; set; }
         public string rayo_Description { get; set; }
-        public Nullable<int> arm_ID { get; set; }
         public Nullable<bool> rayo_Status { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Armoire> Armoire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emplacement> Emplacement { get; set; }
     }

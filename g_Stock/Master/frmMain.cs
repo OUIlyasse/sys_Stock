@@ -78,5 +78,11 @@ namespace g_Stock.Master
             frmMagasin frm = new frmMagasin();
             frm.ShowDialog();
         }
+
+        private void btnRayonnage_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmRayonnage frm = new frmRayonnage();
+            frm.ShowDialog();
+        }
     }
 }

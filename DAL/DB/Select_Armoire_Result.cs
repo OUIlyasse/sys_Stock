@@ -10,24 +10,11 @@
 namespace DAL.DB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Armoire
+    public partial class Select_Armoire_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Armoire()
-        {
-            this.Emplacement = new HashSet<Emplacement>();
-        }
-    
         public int arm_ID { get; set; }
         public string arm_Nom { get; set; }
         public string arm_Description { get; set; }
-        public Nullable<bool> arm_Status { get; set; }
-        public Nullable<int> rayo_ID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Emplacement> Emplacement { get; set; }
-        public virtual Rayonnage Rayonnage { get; set; }
     }
 }

@@ -57,7 +57,7 @@ namespace g_Stock.PL
                         }
                         else
                         {
-                            db.Insert_Utilisateur(txtNom.Text.Trim().ToUpper(), DateTime.Now, txtIdentifiant.Text.Trim().ToUpper(), iTools.iCryptage.Encrypt(txtPass.Text), int.Parse(cmbxService.SelectedValue.ToString()), int.Parse(cmbxProfil.SelectedValue.ToString()));
+                            db.Insert_Utilisateur(db.MaxID_Utilisateur().FirstOrDefault(), txtNom.Text.Trim().ToUpper(), DateTime.Now, txtIdentifiant.Text.Trim().ToUpper(), iTools.iCryptage.Encrypt(txtPass.Text), int.Parse(cmbxService.SelectedValue.ToString()), int.Parse(cmbxProfil.SelectedValue.ToString()));
                             db.SaveChanges();
                             transaction.Commit();
                             //form.txtStatus.Caption = "Votre code a bien ajouté";
@@ -290,7 +290,7 @@ namespace g_Stock.PL
                     }
                     else
                     {
-                        db.Insert_Service(input.Trim().ToUpper(), "", DateTime.Now);
+                        db.Insert_Service(db.MaxID_Service().FirstOrDefault(), input.Trim().ToUpper(), "", DateTime.Now);
                         db.SaveChanges();
                         transaction.Commit();
                         //form.txtStatus.Caption = "Votre code a bien ajouté";
@@ -327,7 +327,7 @@ namespace g_Stock.PL
                     }
                     else
                     {
-                        db.Insert_Profil(input.Trim().ToUpper(), "");
+                        db.Insert_Profil(db.MaxID_Profil().FirstOrDefault(), input.Trim().ToUpper(), "");
                         db.SaveChanges();
                         transaction.Commit();
                         //form.txtStatus.Caption = "Votre code a bien ajouté";
