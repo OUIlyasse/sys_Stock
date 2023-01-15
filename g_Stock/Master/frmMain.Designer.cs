@@ -36,14 +36,19 @@
             this.btnProfil = new DevExpress.XtraBars.BarButtonItem();
             this.btnUtilisateur = new DevExpress.XtraBars.BarButtonItem();
             this.btnMagasin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRayonnage = new DevExpress.XtraBars.BarButtonItem();
+            this.btnArticle = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.lblUser = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.mdi_Manager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.btnRayonnage = new DevExpress.XtraBars.BarButtonItem();
+            this.lblService = new DevExpress.XtraBars.BarStaticItem();
+            this.lblProfil = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdi_Manager)).BeginInit();
             this.SuspendLayout();
@@ -65,9 +70,14 @@
             this.btnProfil,
             this.btnUtilisateur,
             this.btnMagasin,
-            this.btnRayonnage});
+            this.btnRayonnage,
+            this.btnArticle,
+            this.lblUser,
+            this.btnLogin,
+            this.lblService,
+            this.lblProfil});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 6;
+            this.barManager1.MaxItemId = 13;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -82,7 +92,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnProfil),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnUtilisateur),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMagasin),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRayonnage)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRayonnage),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnArticle),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnLogin)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -140,6 +152,31 @@
             this.btnMagasin.Name = "btnMagasin";
             this.btnMagasin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMagasin_ItemClick);
             // 
+            // btnRayonnage
+            // 
+            this.btnRayonnage.Caption = "&Rayonnage";
+            this.btnRayonnage.Id = 5;
+            this.btnRayonnage.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRayonnage.ItemAppearance.Normal.Options.UseFont = true;
+            this.btnRayonnage.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R));
+            this.btnRayonnage.Name = "btnRayonnage";
+            this.btnRayonnage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRayonnage_ItemClick);
+            // 
+            // btnArticle
+            // 
+            this.btnArticle.Caption = "&Article";
+            this.btnArticle.Id = 6;
+            this.btnArticle.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A));
+            this.btnArticle.Name = "btnArticle";
+            this.btnArticle.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnArticle_ItemClick);
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.Caption = "Login";
+            this.btnLogin.Id = 10;
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -147,10 +184,36 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.lblProfil),
+            new DevExpress.XtraBars.LinkPersistInfo(this.lblUser),
+            new DevExpress.XtraBars.LinkPersistInfo(this.lblService)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
+            // 
+            // lblUser
+            // 
+            this.lblUser.Caption = "---";
+            this.lblUser.Id = 9;
+            this.lblUser.ItemAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemAppearance.Disabled.Options.UseFont = true;
+            this.lblUser.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemAppearance.Hovered.Options.UseFont = true;
+            this.lblUser.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ItemAppearance.Normal.Options.UseFont = true;
+            this.lblUser.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemAppearance.Pressed.Options.UseFont = true;
+            this.lblUser.ItemInMenuAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemInMenuAppearance.Disabled.Options.UseFont = true;
+            this.lblUser.ItemInMenuAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemInMenuAppearance.Hovered.Options.UseFont = true;
+            this.lblUser.ItemInMenuAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemInMenuAppearance.Normal.Options.UseFont = true;
+            this.lblUser.ItemInMenuAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblUser.ItemInMenuAppearance.Pressed.Options.UseFont = true;
+            this.lblUser.Name = "lblUser";
             // 
             // barDockControlTop
             // 
@@ -164,9 +227,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 567);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 562);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(900, 24);
+            this.barDockControlBottom.Size = new System.Drawing.Size(900, 29);
             // 
             // barDockControlLeft
             // 
@@ -174,7 +237,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 537);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 532);
             // 
             // barDockControlRight
             // 
@@ -182,7 +245,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(900, 30);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 537);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 532);
             // 
             // bar1
             // 
@@ -209,15 +272,49 @@
             this.mdi_Manager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeader;
             this.mdi_Manager.MdiParent = this;
             // 
-            // btnRayonnage
+            // lblService
             // 
-            this.btnRayonnage.Caption = "&Rayonnage";
-            this.btnRayonnage.Id = 5;
-            this.btnRayonnage.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRayonnage.ItemAppearance.Normal.Options.UseFont = true;
-            this.btnRayonnage.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R));
-            this.btnRayonnage.Name = "btnRayonnage";
-            this.btnRayonnage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRayonnage_ItemClick);
+            this.lblService.Caption = "---";
+            this.lblService.Id = 11;
+            this.lblService.ItemAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemAppearance.Disabled.Options.UseFont = true;
+            this.lblService.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemAppearance.Hovered.Options.UseFont = true;
+            this.lblService.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemAppearance.Normal.Options.UseFont = true;
+            this.lblService.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemAppearance.Pressed.Options.UseFont = true;
+            this.lblService.ItemInMenuAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemInMenuAppearance.Disabled.Options.UseFont = true;
+            this.lblService.ItemInMenuAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemInMenuAppearance.Hovered.Options.UseFont = true;
+            this.lblService.ItemInMenuAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemInMenuAppearance.Normal.Options.UseFont = true;
+            this.lblService.ItemInMenuAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblService.ItemInMenuAppearance.Pressed.Options.UseFont = true;
+            this.lblService.Name = "lblService";
+            // 
+            // lblProfil
+            // 
+            this.lblProfil.Caption = "---";
+            this.lblProfil.Id = 12;
+            this.lblProfil.ItemAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemAppearance.Disabled.Options.UseFont = true;
+            this.lblProfil.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemAppearance.Hovered.Options.UseFont = true;
+            this.lblProfil.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemAppearance.Normal.Options.UseFont = true;
+            this.lblProfil.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemAppearance.Pressed.Options.UseFont = true;
+            this.lblProfil.ItemInMenuAppearance.Disabled.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemInMenuAppearance.Disabled.Options.UseFont = true;
+            this.lblProfil.ItemInMenuAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemInMenuAppearance.Hovered.Options.UseFont = true;
+            this.lblProfil.ItemInMenuAppearance.Normal.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemInMenuAppearance.Normal.Options.UseFont = true;
+            this.lblProfil.ItemInMenuAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lblProfil.ItemInMenuAppearance.Pressed.Options.UseFont = true;
+            this.lblProfil.Name = "lblProfil";
             // 
             // frmMain
             // 
@@ -235,6 +332,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de Stock";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdi_Manager)).EndInit();
             this.ResumeLayout(false);
@@ -259,5 +358,10 @@
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdi_Manager;
         private DevExpress.XtraBars.BarButtonItem btnMagasin;
         private DevExpress.XtraBars.BarButtonItem btnRayonnage;
+        private DevExpress.XtraBars.BarButtonItem btnArticle;
+        private DevExpress.XtraBars.BarStaticItem lblUser;
+        private DevExpress.XtraBars.BarButtonItem btnLogin;
+        private DevExpress.XtraBars.BarStaticItem lblProfil;
+        private DevExpress.XtraBars.BarStaticItem lblService;
     }
 }

@@ -30,10 +30,10 @@ namespace DAL.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Article_CodeBarre> Article_CodeBarre { get; set; }
-        public virtual Article_Info Article_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BL_Article> BL_Article { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emplacement> Emplacement { get; set; }
+        public virtual Article_Info Article_Info { get; set; }
     }
 }

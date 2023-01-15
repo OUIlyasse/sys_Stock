@@ -51,6 +51,7 @@
             // 
             // btnSupprimer
             // 
+            this.btnSupprimer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSupprimer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSupprimer.FlatAppearance.BorderSize = 0;
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -68,6 +69,7 @@
             // 
             // btnModifier
             // 
+            this.btnModifier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnModifier.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModifier.FlatAppearance.BorderSize = 0;
             this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -85,6 +87,7 @@
             // 
             // btnAjouter
             // 
+            this.btnAjouter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAjouter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAjouter.FlatAppearance.BorderSize = 0;
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

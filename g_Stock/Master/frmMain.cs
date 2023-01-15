@@ -13,6 +13,14 @@ namespace g_Stock.Master
 {
     public partial class frmMain : Form
     {
+        #region Variables
+
+        private string username = Properties.Settings.Default.Identifiant;
+        private string profil = Properties.Settings.Default.Profil;
+        private string service = Properties.Settings.Default.Service;
+
+        #endregion Variables
+
         #region Codes
 
         public void OpenForm(Form _Form)
@@ -69,7 +77,6 @@ namespace g_Stock.Master
         private void btnUtilisateur_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmUtilisateur frm = new frmUtilisateur();
-
             OpenForm(frm);
         }
 
@@ -83,6 +90,30 @@ namespace g_Stock.Master
         {
             frmRayonnage frm = new frmRayonnage();
             frm.ShowDialog();
+        }
+
+        private void btnArticle_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmA_ArticleInfo frm = new frmA_ArticleInfo();
+            OpenForm(frm);
+        }
+
+        private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            lblProfil.Caption = string.Format("Profil: {0}", profil);
+            lblUser.Caption = string.Format("Identifiant: {0}", username);
+            lblService.Caption = string.Format("Service: {0}", service);
         }
     }
 }

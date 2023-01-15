@@ -17,20 +17,18 @@ namespace DAL.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unite_Mesure()
         {
-            this.Article_Info = new HashSet<Article_Info>();
             this.Mouvement = new HashSet<Mouvement>();
-            this.Unite_Type = new HashSet<Unite_Type>();
+            this.Article_Info = new HashSet<Article_Info>();
         }
     
         public int unit_M_ID { get; set; }
         public string unit_M_Nom { get; set; }
         public Nullable<bool> unit_M_Status { get; set; }
+        public string unit_M_Abreviation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article_Info> Article_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mouvement> Mouvement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unite_Type> Unite_Type { get; set; }
+        public virtual ICollection<Article_Info> Article_Info { get; set; }
     }
 }

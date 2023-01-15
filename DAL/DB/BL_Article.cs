@@ -32,10 +32,10 @@ namespace DAL.DB
         public Nullable<bool> bl_A_Status { get; set; }
     
         public virtual Article_CodeBarre Article_CodeBarre { get; set; }
-        public virtual Article_Info Article_Info { get; set; }
         public virtual Article_Reference Article_Reference { get; set; }
         public virtual BL BL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mouvement> Mouvement { get; set; }
+        public virtual Article_Info Article_Info { get; set; }
     }
 }

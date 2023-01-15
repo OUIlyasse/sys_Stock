@@ -26,6 +26,5 @@ namespace DAL.DB
         public virtual Action Action { get; set; }
         public virtual BL_Article BL_Article { get; set; }
         public virtual Unite_Mesure Unite_Mesure { get; set; }
-        public virtual Unite_Type Unite_Type { get; set; }
     }
 }

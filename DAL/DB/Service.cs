@@ -17,8 +17,8 @@ namespace DAL.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Article_Info = new HashSet<Article_Info>();
             this.Utilisateur = new HashSet<Utilisateur>();
+            this.Article_Info = new HashSet<Article_Info>();
         }
     
         public int svc_ID { get; set; }
@@ -28,8 +28,8 @@ namespace DAL.DB
         public Nullable<bool> svc_Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article_Info> Article_Info { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Utilisateur> Utilisateur { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Article_Info> Article_Info { get; set; }
     }
 }

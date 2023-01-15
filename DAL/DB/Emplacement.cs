@@ -24,9 +24,9 @@ namespace DAL.DB
         public string eplc_Description { get; set; }
     
         public virtual Armoire Armoire { get; set; }
-        public virtual Article_Info Article_Info { get; set; }
         public virtual Article_Reference Article_Reference { get; set; }
         public virtual Magasin Magasin { get; set; }
         public virtual Rayonnage Rayonnage { get; set; }
+        public virtual Article_Info Article_Info { get; set; }
     }
 }

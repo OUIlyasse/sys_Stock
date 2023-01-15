@@ -138,6 +138,9 @@
     <Compile Include="DB\Select_Service_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Select_vw_Article_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\select_vw_Utilisateur_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
@@ -163,9 +166,6 @@
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Unite_Mesure.cs">
-      <DependentUpon>Stock.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Unite_Type.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Utilisateur.cs">

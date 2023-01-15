@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="g_StockModel.Action" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Armoire" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Article_CodeBarre" Width="1.5" PointX="9.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="g_StockModel.Article_Info" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Article_Photo" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Article_Reference" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.BL" Width="1.5" PointX="9.75" PointY="23.625" IsExpanded="true" />
@@ -22,21 +21,12 @@
         <EntityTypeShape EntityType="g_StockModel.Service" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Unite" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
         <EntityTypeShape EntityType="g_StockModel.Unite_Mesure" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="g_StockModel.Unite_Type" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
         <AssociationConnector Association="g_StockModel.FK_Article_CodeBarre_Action" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Bon_Action" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Mouvement_Action" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Armoire" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Article_CodeBarre_Article_Reference" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_CodeBarre" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Article_Famille" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Article_Photo_Article_Info" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Article_Service" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Article_Unite_Mesure" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Article_Unite_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Info" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Emplacement_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Reference_Article" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Reference" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Reference" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_BL_Article_BL" ManuallyRouted="false" />
@@ -45,14 +35,20 @@
         <AssociationConnector Association="g_StockModel.FK_Mouvement_BL_Article" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Magasin" ManuallyRouted="false" />
         <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Mesure" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Mouvement_Unite_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="g_StockModel.FK_Unite_Type_Unite_Mesure" ManuallyRouted="false" />
         <EntityTypeShape EntityType="g_StockModel.Utilisateur" Width="1.5" PointX="5.25" PointY="6.875" />
         <AssociationConnector Association="g_StockModel.FK_Utilisateur_Profil" />
         <AssociationConnector Association="g_StockModel.FK_Utilisateur_Service" />
         <EntityTypeShape EntityType="g_StockModel.Rayonnage" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="g_StockModel.FK_Armoire_Rayonnage" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Rayonnage" />
+        <EntityTypeShape EntityType="g_StockModel.Article_Info" Width="1.5" PointX="5.25" PointY="11.375" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Famille" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Info_Unite_Mesure" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Photo_Article_Info" />
+        <AssociationConnector Association="g_StockModel.FK_Article_Service" />
+        <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Info" />
+        <AssociationConnector Association="g_StockModel.FK_Emplacement_Article" />
+        <AssociationConnector Association="g_StockModel.FK_Reference_Article" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

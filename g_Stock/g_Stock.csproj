@@ -35,6 +35,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -92,6 +96,18 @@
     <Compile Include="PL\frmArmoire.Designer.cs">
       <DependentUpon>frmArmoire.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\frmArticleInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\frmArticleInfo.Designer.cs">
+      <DependentUpon>frmArticleInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\frmA_ArticleInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\frmA_ArticleInfo.Designer.cs">
+      <DependentUpon>frmA_ArticleInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\frmA_Utilisateur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +119,12 @@
     </Compile>
     <Compile Include="PL\frmFamille.Designer.cs">
       <DependentUpon>frmFamille.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\frmMagasin.cs">
       <SubType>Form</SubType>
@@ -148,11 +170,20 @@
     <EmbeddedResource Include="PL\frmArmoire.resx">
       <DependentUpon>frmArmoire.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PL\frmArticleInfo.resx">
+      <DependentUpon>frmArticleInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\frmA_ArticleInfo.resx">
+      <DependentUpon>frmA_ArticleInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PL\frmA_Utilisateur.resx">
       <DependentUpon>frmA_Utilisateur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmFamille.resx">
       <DependentUpon>frmFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\frmMagasin.resx">
       <DependentUpon>frmMagasin.cs</DependentUpon>
@@ -242,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Supprimer_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fermer_fenêtre_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

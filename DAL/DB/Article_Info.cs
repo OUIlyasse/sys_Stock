@@ -24,20 +24,18 @@ namespace DAL.DB
         }
     
         public int art_ID { get; set; }
-        public string art_Designatiion { get; set; }
+        public string art_Designation { get; set; }
         public string art_Description { get; set; }
         public Nullable<int> svc_ID { get; set; }
         public Nullable<int> fam_ID { get; set; }
-        public Nullable<int> unit_ID { get; set; }
         public Nullable<int> unit_M_ID { get; set; }
         public Nullable<bool> art_Status { get; set; }
     
         public virtual Famille Famille { get; set; }
+        public virtual Unite_Mesure Unite_Mesure { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Article_Photo> Article_Photo { get; set; }
         public virtual Service Service { get; set; }
-        public virtual Unite_Mesure Unite_Mesure { get; set; }
-        public virtual Unite_Type Unite_Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BL_Article> BL_Article { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

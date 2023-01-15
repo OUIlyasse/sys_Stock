@@ -30,7 +30,6 @@ namespace DAL.DB
         public virtual DbSet<Action> Action { get; set; }
         public virtual DbSet<Armoire> Armoire { get; set; }
         public virtual DbSet<Article_CodeBarre> Article_CodeBarre { get; set; }
-        public virtual DbSet<Article_Info> Article_Info { get; set; }
         public virtual DbSet<Article_Photo> Article_Photo { get; set; }
         public virtual DbSet<Article_Reference> Article_Reference { get; set; }
         public virtual DbSet<BL> BL { get; set; }
@@ -44,9 +43,9 @@ namespace DAL.DB
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Unite> Unite { get; set; }
         public virtual DbSet<Unite_Mesure> Unite_Mesure { get; set; }
-        public virtual DbSet<Unite_Type> Unite_Type { get; set; }
         public virtual DbSet<Utilisateur> Utilisateur { get; set; }
         public virtual DbSet<Rayonnage> Rayonnage { get; set; }
+        public virtual DbSet<Article_Info> Article_Info { get; set; }
     
         public virtual int Delete_Famille(Nullable<int> fam_ID)
         {
@@ -820,6 +819,36 @@ namespace DAL.DB
                 new ObjectParameter("rayo_Nom", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Count_Rayonnage_By_Nom", rayo_NomParameter);
+        }
+    
+        public virtual ObjectResult<Select_vw_Article_Result> Select_vw_Article(string svc_Nom)
+        {
+            var svc_NomParameter = svc_Nom != null ?
+                new ObjectParameter("svc_Nom", svc_Nom) :
+                new ObjectParameter("svc_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_vw_Article_Result>("Select_vw_Article", svc_NomParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Validate_Utilisateur(string util_Identifiant, string util_MotPasse, Nullable<int> svc_ID, Nullable<int> prof_ID)
+        {
+            var util_IdentifiantParameter = util_Identifiant != null ?
+                new ObjectParameter("util_Identifiant", util_Identifiant) :
+                new ObjectParameter("util_Identifiant", typeof(string));
+    
+            var util_MotPasseParameter = util_MotPasse != null ?
+                new ObjectParameter("util_MotPasse", util_MotPasse) :
+                new ObjectParameter("util_MotPasse", typeof(string));
+    
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var prof_IDParameter = prof_ID.HasValue ?
+                new ObjectParameter("prof_ID", prof_ID) :
+                new ObjectParameter("prof_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_Utilisateur", util_IdentifiantParameter, util_MotPasseParameter, svc_IDParameter, prof_IDParameter);
         }
     }
 }
