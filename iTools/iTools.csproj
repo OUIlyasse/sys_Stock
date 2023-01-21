@@ -52,6 +52,7 @@
     <Compile Include="iCryptage.cs" />
     <Compile Include="iData.cs" />
     <Compile Include="iDate.cs" />
+    <Compile Include="iFile.cs" />
     <Compile Include="iMessage.cs" />
     <Compile Include="iText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

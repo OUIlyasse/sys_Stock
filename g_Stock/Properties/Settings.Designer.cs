@@ -70,5 +70,29 @@ namespace g_Stock.Properties {
                 this["RememberMe"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\g_Stock\\.Photos")]
+        public string pathLphoto {
+            get {
+                return ((string)(this["pathLphoto"]));
+            }
+            set {
+                this["pathLphoto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\g_Stock\\.Temp")]
+        public string pathTemp {
+            get {
+                return ((string)(this["pathTemp"]));
+            }
+            set {
+                this["pathTemp"] = value;
+            }
+        }
     }
 }

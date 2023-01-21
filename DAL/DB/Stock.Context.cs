@@ -850,5 +850,220 @@ namespace DAL.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_Utilisateur", util_IdentifiantParameter, util_MotPasseParameter, svc_IDParameter, prof_IDParameter);
         }
+    
+        public virtual int Delete_Unite_Mesure(Nullable<int> unit_M_ID)
+        {
+            var unit_M_IDParameter = unit_M_ID.HasValue ?
+                new ObjectParameter("unit_M_ID", unit_M_ID) :
+                new ObjectParameter("unit_M_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Unite_Mesure", unit_M_IDParameter);
+        }
+    
+        public virtual int Insert_Unite_Mesure(Nullable<int> unit_M_ID, string unit_M_Nom, string unit_M_Abreviation)
+        {
+            var unit_M_IDParameter = unit_M_ID.HasValue ?
+                new ObjectParameter("unit_M_ID", unit_M_ID) :
+                new ObjectParameter("unit_M_ID", typeof(int));
+    
+            var unit_M_NomParameter = unit_M_Nom != null ?
+                new ObjectParameter("unit_M_Nom", unit_M_Nom) :
+                new ObjectParameter("unit_M_Nom", typeof(string));
+    
+            var unit_M_AbreviationParameter = unit_M_Abreviation != null ?
+                new ObjectParameter("unit_M_Abreviation", unit_M_Abreviation) :
+                new ObjectParameter("unit_M_Abreviation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Unite_Mesure", unit_M_IDParameter, unit_M_NomParameter, unit_M_AbreviationParameter);
+        }
+    
+        public virtual ObjectResult<Select_Unite_Mesure_Result> Select_Unite_Mesure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Unite_Mesure_Result>("Select_Unite_Mesure");
+        }
+    
+        public virtual int Update_Unite_Mesure(Nullable<int> unit_M_ID, string unit_M_Nom, string unit_M_Abreviation)
+        {
+            var unit_M_IDParameter = unit_M_ID.HasValue ?
+                new ObjectParameter("unit_M_ID", unit_M_ID) :
+                new ObjectParameter("unit_M_ID", typeof(int));
+    
+            var unit_M_NomParameter = unit_M_Nom != null ?
+                new ObjectParameter("unit_M_Nom", unit_M_Nom) :
+                new ObjectParameter("unit_M_Nom", typeof(string));
+    
+            var unit_M_AbreviationParameter = unit_M_Abreviation != null ?
+                new ObjectParameter("unit_M_Abreviation", unit_M_Abreviation) :
+                new ObjectParameter("unit_M_Abreviation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Unite_Mesure", unit_M_IDParameter, unit_M_NomParameter, unit_M_AbreviationParameter);
+        }
+    
+        public virtual int Delete_Article_Info(Nullable<int> art_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Article_Info", art_IDParameter);
+        }
+    
+        public virtual int Insert_Article_Info(Nullable<int> art_ID, string art_Designation, string art_Abreviation, string art_Description, Nullable<int> svc_ID, Nullable<int> fam_ID, Nullable<int> unit_M_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            var art_DesignationParameter = art_Designation != null ?
+                new ObjectParameter("art_Designation", art_Designation) :
+                new ObjectParameter("art_Designation", typeof(string));
+    
+            var art_AbreviationParameter = art_Abreviation != null ?
+                new ObjectParameter("art_Abreviation", art_Abreviation) :
+                new ObjectParameter("art_Abreviation", typeof(string));
+    
+            var art_DescriptionParameter = art_Description != null ?
+                new ObjectParameter("art_Description", art_Description) :
+                new ObjectParameter("art_Description", typeof(string));
+    
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var fam_IDParameter = fam_ID.HasValue ?
+                new ObjectParameter("fam_ID", fam_ID) :
+                new ObjectParameter("fam_ID", typeof(int));
+    
+            var unit_M_IDParameter = unit_M_ID.HasValue ?
+                new ObjectParameter("unit_M_ID", unit_M_ID) :
+                new ObjectParameter("unit_M_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Article_Info", art_IDParameter, art_DesignationParameter, art_AbreviationParameter, art_DescriptionParameter, svc_IDParameter, fam_IDParameter, unit_M_IDParameter);
+        }
+    
+        public virtual int Update_Article_Info(Nullable<int> art_ID, string art_Designation, string art_Description, Nullable<int> svc_ID, Nullable<int> fam_ID, Nullable<int> unit_M_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            var art_DesignationParameter = art_Designation != null ?
+                new ObjectParameter("art_Designation", art_Designation) :
+                new ObjectParameter("art_Designation", typeof(string));
+    
+            var art_DescriptionParameter = art_Description != null ?
+                new ObjectParameter("art_Description", art_Description) :
+                new ObjectParameter("art_Description", typeof(string));
+    
+            var svc_IDParameter = svc_ID.HasValue ?
+                new ObjectParameter("svc_ID", svc_ID) :
+                new ObjectParameter("svc_ID", typeof(int));
+    
+            var fam_IDParameter = fam_ID.HasValue ?
+                new ObjectParameter("fam_ID", fam_ID) :
+                new ObjectParameter("fam_ID", typeof(int));
+    
+            var unit_M_IDParameter = unit_M_ID.HasValue ?
+                new ObjectParameter("unit_M_ID", unit_M_ID) :
+                new ObjectParameter("unit_M_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Article_Info", art_IDParameter, art_DesignationParameter, art_DescriptionParameter, svc_IDParameter, fam_IDParameter, unit_M_IDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Count_Article_Info()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Count_Article_Info");
+        }
+    
+        public virtual int Delete_Article_Photo(Nullable<int> art_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Article_Photo", art_IDParameter);
+        }
+    
+        public virtual int Insert_Article_Photo(Nullable<int> pho_ID, string pho_Path, string pho_Nom, string pho_Extension, Nullable<int> art_ID)
+        {
+            var pho_IDParameter = pho_ID.HasValue ?
+                new ObjectParameter("pho_ID", pho_ID) :
+                new ObjectParameter("pho_ID", typeof(int));
+    
+            var pho_PathParameter = pho_Path != null ?
+                new ObjectParameter("pho_Path", pho_Path) :
+                new ObjectParameter("pho_Path", typeof(string));
+    
+            var pho_NomParameter = pho_Nom != null ?
+                new ObjectParameter("pho_Nom", pho_Nom) :
+                new ObjectParameter("pho_Nom", typeof(string));
+    
+            var pho_ExtensionParameter = pho_Extension != null ?
+                new ObjectParameter("pho_Extension", pho_Extension) :
+                new ObjectParameter("pho_Extension", typeof(string));
+    
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Article_Photo", pho_IDParameter, pho_PathParameter, pho_NomParameter, pho_ExtensionParameter, art_IDParameter);
+        }
+    
+        public virtual ObjectResult<Select_Article_Photo_By_Article_Result> Select_Article_Photo_By_Article(Nullable<int> art_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Article_Photo_By_Article_Result>("Select_Article_Photo_By_Article", art_IDParameter);
+        }
+    
+        public virtual int Update_Article_Photo(string pho_Path, string pho_Nom, string pho_Extension, Nullable<int> pho_ID)
+        {
+            var pho_PathParameter = pho_Path != null ?
+                new ObjectParameter("pho_Path", pho_Path) :
+                new ObjectParameter("pho_Path", typeof(string));
+    
+            var pho_NomParameter = pho_Nom != null ?
+                new ObjectParameter("pho_Nom", pho_Nom) :
+                new ObjectParameter("pho_Nom", typeof(string));
+    
+            var pho_ExtensionParameter = pho_Extension != null ?
+                new ObjectParameter("pho_Extension", pho_Extension) :
+                new ObjectParameter("pho_Extension", typeof(string));
+    
+            var pho_IDParameter = pho_ID.HasValue ?
+                new ObjectParameter("pho_ID", pho_ID) :
+                new ObjectParameter("pho_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Article_Photo", pho_PathParameter, pho_NomParameter, pho_ExtensionParameter, pho_IDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Select_Article_Info_By_Designation(string art_Designation)
+        {
+            var art_DesignationParameter = art_Designation != null ?
+                new ObjectParameter("art_Designation", art_Designation) :
+                new ObjectParameter("art_Designation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Select_Article_Info_By_Designation", art_DesignationParameter);
+        }
+    
+        public virtual ObjectResult<Article_Info> Select_Article_Info_By_ID(Nullable<int> art_ID)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Article_Info>("Select_Article_Info_By_ID", art_IDParameter);
+        }
+    
+        public virtual ObjectResult<Article_Info> Select_Article_Info_By_ID(Nullable<int> art_ID, MergeOption mergeOption)
+        {
+            var art_IDParameter = art_ID.HasValue ?
+                new ObjectParameter("art_ID", art_ID) :
+                new ObjectParameter("art_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Article_Info>("Select_Article_Info_By_ID", mergeOption, art_IDParameter);
+        }
     }
 }

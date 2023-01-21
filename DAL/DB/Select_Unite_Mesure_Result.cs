@@ -11,14 +11,11 @@ namespace DAL.DB
 {
     using System;
     
-    public partial class Select_vw_Article_Result
+    public partial class Select_Unite_Mesure_Result
     {
-        public int art_ID { get; set; }
-        public string art_Designation { get; set; }
-        public string art_Description { get; set; }
-        public string svc_Nom { get; set; }
-        public string fam_Nom { get; set; }
+        public int unit_M_ID { get; set; }
+        public string unit_M_Nom { get; set; }
         public string unit_M_Abreviation { get; set; }
-        public string art_Abreviation { get; set; }
+        public Nullable<bool> unit_M_Status { get; set; }
     }
 }

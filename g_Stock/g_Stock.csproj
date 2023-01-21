@@ -277,6 +277,21 @@
   <ItemGroup>
     <None Include="Resources\Fermer_fenêtre_24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dossier_images_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synchroniser_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Projecteur_film_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Moins_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Supprimer_image_24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

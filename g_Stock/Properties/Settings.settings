@@ -14,5 +14,11 @@
     <Setting Name="RememberMe" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="pathLphoto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\g_Stock\.Photos</Value>
+    </Setting>
+    <Setting Name="pathTemp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\g_Stock\.Temp</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

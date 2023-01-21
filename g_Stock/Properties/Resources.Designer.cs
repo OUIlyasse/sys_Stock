@@ -83,6 +83,16 @@ namespace g_Stock.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dossier_images_24 {
+            get {
+                object obj = ResourceManager.GetObject("Dossier_images_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Error {
             get {
                 object obj = ResourceManager.GetObject("Error", resourceCulture);
@@ -133,6 +143,16 @@ namespace g_Stock.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Moins_24 {
+            get {
+                object obj = ResourceManager.GetObject("Moins_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Plus_24 {
             get {
                 object obj = ResourceManager.GetObject("Plus_24", resourceCulture);
@@ -146,6 +166,16 @@ namespace g_Stock.Properties {
         internal static System.Drawing.Bitmap Plus_30 {
             get {
                 object obj = ResourceManager.GetObject("Plus_30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Projecteur_film_24 {
+            get {
+                object obj = ResourceManager.GetObject("Projecteur_film_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +216,26 @@ namespace g_Stock.Properties {
         internal static System.Drawing.Bitmap Supprimer_48 {
             get {
                 object obj = ResourceManager.GetObject("Supprimer_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Supprimer_image_24 {
+            get {
+                object obj = ResourceManager.GetObject("Supprimer_image_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Synchroniser_24 {
+            get {
+                object obj = ResourceManager.GetObject("Synchroniser_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

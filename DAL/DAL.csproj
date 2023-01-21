@@ -111,6 +111,12 @@
     <Compile Include="DB\Select_Armoire_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Select_Article_Info_By_ID_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Article_Photo_By_Article_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Select_Famille_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
@@ -136,6 +142,9 @@
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Select_Service_Result.cs">
+      <DependentUpon>Stock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Select_Unite_Mesure_Result.cs">
       <DependentUpon>Stock.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Select_vw_Article_Result.cs">

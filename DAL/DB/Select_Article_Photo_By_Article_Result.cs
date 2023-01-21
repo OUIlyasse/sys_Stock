@@ -11,14 +11,12 @@ namespace DAL.DB
 {
     using System;
     
-    public partial class Select_vw_Article_Result
+    public partial class Select_Article_Photo_By_Article_Result
     {
-        public int art_ID { get; set; }
-        public string art_Designation { get; set; }
-        public string art_Description { get; set; }
-        public string svc_Nom { get; set; }
-        public string fam_Nom { get; set; }
-        public string unit_M_Abreviation { get; set; }
-        public string art_Abreviation { get; set; }
+        public int pho_ID { get; set; }
+        public string pho_Path { get; set; }
+        public string pho_Nom { get; set; }
+        public string pho_Extension { get; set; }
+        public string pho_Description { get; set; }
     }
 }

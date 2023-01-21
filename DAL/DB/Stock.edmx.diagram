@@ -41,7 +41,7 @@
         <EntityTypeShape EntityType="g_StockModel.Rayonnage" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="g_StockModel.FK_Armoire_Rayonnage" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Rayonnage" />
-        <EntityTypeShape EntityType="g_StockModel.Article_Info" Width="1.5" PointX="5.25" PointY="11.375" />
+        <EntityTypeShape EntityType="g_StockModel.Article_Info" Width="1.5" PointX="5.25" PointY="11.25" />
         <AssociationConnector Association="g_StockModel.FK_Article_Famille" />
         <AssociationConnector Association="g_StockModel.FK_Article_Info_Unite_Mesure" />
         <AssociationConnector Association="g_StockModel.FK_Article_Photo_Article_Info" />
@@ -49,7 +49,7 @@
         <AssociationConnector Association="g_StockModel.FK_BL_Article_Article_Info" />
         <AssociationConnector Association="g_StockModel.FK_Emplacement_Article" />
         <AssociationConnector Association="g_StockModel.FK_Reference_Article" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

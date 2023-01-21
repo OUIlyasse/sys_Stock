@@ -46,6 +46,7 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtPass = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcArticle)).BeginInit();
@@ -240,6 +241,7 @@
             this.gvArticle.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn4,
             this.gridColumn3,
             this.gridColumn5,
             this.gridColumn6});
@@ -253,6 +255,8 @@
             this.gvArticle.OptionsFind.ShowFindButton = false;
             this.gvArticle.OptionsView.ShowAutoFilterRow = true;
             this.gvArticle.OptionsView.ShowIndicator = false;
+            this.gvArticle.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvArticle_RowClick);
+            this.gvArticle.DoubleClick += new System.EventHandler(this.gvArticle_DoubleClick);
             // 
             // gridColumn1
             // 
@@ -296,7 +300,7 @@
             this.gridColumn5.FieldName = "fam_Nom";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
+            this.gridColumn5.VisibleIndex = 2;
             // 
             // gridColumn6
             // 
@@ -304,7 +308,7 @@
             this.gridColumn6.FieldName = "unit_M_Abreviation";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 2;
+            this.gridColumn6.VisibleIndex = 3;
             // 
             // txtPass
             // 
@@ -313,6 +317,14 @@
             this.txtPass.AutoHeight = false;
             this.txtPass.Name = "txtPass";
             this.txtPass.UseSystemPasswordChar = true;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Abréviation";
+            this.gridColumn4.FieldName = "art_Abreviation";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
             // 
             // frmA_ArticleInfo
             // 
@@ -360,5 +372,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtPass;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

@@ -25,6 +25,7 @@ namespace DAL.DB
     
         public int art_ID { get; set; }
         public string art_Designation { get; set; }
+        public string art_Abreviation { get; set; }
         public string art_Description { get; set; }
         public Nullable<int> svc_ID { get; set; }
         public Nullable<int> fam_ID { get; set; }

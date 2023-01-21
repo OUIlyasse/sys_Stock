@@ -41,6 +41,7 @@
           </Key>
           <Property Name="art_ID" Type="int" Nullable="false" />
           <Property Name="art_Designation" Type="nvarchar" MaxLength="500" />
+          <Property Name="art_Abreviation" Type="nchar" MaxLength="10" />
           <Property Name="art_Description" Type="nvarchar(max)" />
           <Property Name="svc_ID" Type="int" />
           <Property Name="fam_ID" Type="int" />
@@ -514,6 +515,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Count_Article_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Count_Rayonnage_By_Nom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
         </Function>
@@ -522,6 +524,12 @@
         </Function>
         <Function Name="Delete_Armoire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="arm_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Article_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Article_Photo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Delete_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
@@ -538,6 +546,9 @@
         <Function Name="Delete_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Delete_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="unit_M_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Delete_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="util_ID" Type="int" Mode="In" />
         </Function>
@@ -552,6 +563,22 @@
           <Parameter Name="arm_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="arm_Description" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="rayo_Nom" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Article_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
+          <Parameter Name="art_Designation" Type="nvarchar" Mode="In" />
+          <Parameter Name="art_Abreviation" Type="nchar" Mode="In" />
+          <Parameter Name="art_Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+          <Parameter Name="unit_M_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Article_Photo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pho_ID" Type="int" Mode="In" />
+          <Parameter Name="pho_Path" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pho_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pho_Extension" Type="nchar" Mode="In" />
+          <Parameter Name="art_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Insert_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
@@ -580,6 +607,11 @@
           <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="svc_Date" Type="date" Mode="In" />
         </Function>
+        <Function Name="Insert_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="unit_M_ID" Type="int" Mode="In" />
+          <Parameter Name="unit_M_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="unit_M_Abreviation" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="Insert_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="util_ID" Type="int" Mode="In" />
           <Parameter Name="util_Nom" Type="nvarchar(max)" Mode="In" />
@@ -607,7 +639,6 @@
         <Function Name="MaxID_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Unite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="MaxID_Unite_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Search_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mode" Type="nvarchar" Mode="In" />
@@ -623,6 +654,15 @@
         </Function>
         <Function Name="Select_Armoire_By_Rayonage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="rayo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Article_Info_By_Designation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_Designation" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Select_Article_Info_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Article_Photo_By_Article" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Select_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Famille_By_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -657,6 +697,7 @@
         <Function Name="Select_Service_By_Service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Select_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Utilisateur_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="util_ID" Type="int" Mode="In" />
         </Function>
@@ -671,6 +712,20 @@
           <Parameter Name="arm_ID" Type="int" Mode="In" />
           <Parameter Name="arm_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="arm_Description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Article_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="art_ID" Type="int" Mode="In" />
+          <Parameter Name="art_Designation" Type="nvarchar" Mode="In" />
+          <Parameter Name="art_Description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="svc_ID" Type="int" Mode="In" />
+          <Parameter Name="fam_ID" Type="int" Mode="In" />
+          <Parameter Name="unit_M_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Update_Article_Photo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pho_Path" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pho_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pho_Extension" Type="nchar" Mode="In" />
+          <Parameter Name="pho_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Update_Famille" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fam_ID" Type="int" Mode="In" />
@@ -697,6 +752,11 @@
           <Parameter Name="svc_ID" Type="int" Mode="In" />
           <Parameter Name="svc_Nom" Type="nvarchar" Mode="In" />
           <Parameter Name="svc_description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Unite_Mesure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="unit_M_ID" Type="int" Mode="In" />
+          <Parameter Name="unit_M_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="unit_M_Abreviation" Type="nchar" Mode="In" />
         </Function>
         <Function Name="Update_Utilisateur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="util_ID" Type="int" Mode="In" />
@@ -1500,6 +1560,75 @@
           <FunctionImport Name="Count_Rayonnage_By_Nom" ReturnType="Collection(Int32)">
           <Parameter Name="rayo_Nom" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Select_vw_Article" ReturnType="Collection(g_StockModel.Select_vw_Article_Result)">
+          <Parameter Name="svc_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Validate_Utilisateur" ReturnType="Collection(Int32)">
+            <Parameter Name="util_Identifiant" Mode="In" Type="String" />
+            <Parameter Name="util_MotPasse" Mode="In" Type="String" />
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="prof_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Unite_Mesure">
+          <Parameter Name="unit_M_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Unite_Mesure">
+            <Parameter Name="unit_M_ID" Mode="In" Type="Int32" />
+            <Parameter Name="unit_M_Nom" Mode="In" Type="String" />
+            <Parameter Name="unit_M_Abreviation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Unite_Mesure" ReturnType="Collection(g_StockModel.Select_Unite_Mesure_Result)" />
+          <FunctionImport Name="Update_Unite_Mesure">
+            <Parameter Name="unit_M_ID" Mode="In" Type="Int32" />
+            <Parameter Name="unit_M_Nom" Mode="In" Type="String" />
+            <Parameter Name="unit_M_Abreviation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Article_Info">
+          <Parameter Name="art_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Article_Info">
+            <Parameter Name="art_ID" Mode="In" Type="Int32" />
+            <Parameter Name="art_Designation" Mode="In" Type="String" />
+            <Parameter Name="art_Abreviation" Mode="In" Type="String" />
+            <Parameter Name="art_Description" Mode="In" Type="String" />
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+            <Parameter Name="unit_M_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Article_Info">
+            <Parameter Name="art_ID" Mode="In" Type="Int32" />
+            <Parameter Name="art_Designation" Mode="In" Type="String" />
+            <Parameter Name="art_Description" Mode="In" Type="String" />
+            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
+            <Parameter Name="fam_ID" Mode="In" Type="Int32" />
+            <Parameter Name="unit_M_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Count_Article_Info" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Delete_Article_Photo">
+          <Parameter Name="art_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Article_Photo">
+            <Parameter Name="pho_ID" Mode="In" Type="Int32" />
+            <Parameter Name="pho_Path" Mode="In" Type="String" />
+            <Parameter Name="pho_Nom" Mode="In" Type="String" />
+            <Parameter Name="pho_Extension" Mode="In" Type="String" />
+            <Parameter Name="art_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Article_Photo_By_Article" ReturnType="Collection(g_StockModel.Select_Article_Photo_By_Article_Result)">
+          <Parameter Name="art_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Article_Photo">
+            <Parameter Name="pho_Path" Mode="In" Type="String" />
+            <Parameter Name="pho_Nom" Mode="In" Type="String" />
+            <Parameter Name="pho_Extension" Mode="In" Type="String" />
+            <Parameter Name="pho_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Article_Info_By_Designation" ReturnType="Collection(Int32)">
+          <Parameter Name="art_Designation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Article_Info_By_ID" EntitySet="Article_Info" ReturnType="Collection(g_StockModel.Article_Info)">
+          <Parameter Name="art_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Article_Info" EntityType="g_StockModel.Article_Info" />
           <AssociationSet Name="FK_Article_Famille" Association="g_StockModel.FK_Article_Famille">
             <End Role="Famille" EntitySet="Famille" />
@@ -1529,15 +1658,6 @@
             <End Role="Article_Info" EntitySet="Article_Info" />
             <End Role="Article_Reference" EntitySet="Article_Reference" />
           </AssociationSet>
-          <FunctionImport Name="Select_vw_Article" ReturnType="Collection(g_StockModel.Select_vw_Article_Result)">
-            <Parameter Name="svc_Nom" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Validate_Utilisateur" ReturnType="Collection(Int32)">
-            <Parameter Name="util_Identifiant" Mode="In" Type="String" />
-            <Parameter Name="util_MotPasse" Mode="In" Type="String" />
-            <Parameter Name="svc_ID" Mode="In" Type="Int32" />
-            <Parameter Name="prof_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Famille_Result">
           <Property Type="Int32" Name="fam_ID" Nullable="false" />
@@ -1692,12 +1812,44 @@
           <Property Type="String" Name="arm_Nom" Nullable="true" MaxLength="350" />
           <Property Type="String" Name="arm_Description" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="Select_vw_Article_Result">
+          <Property Type="Int32" Name="art_ID" Nullable="false" />
+          <Property Type="String" Name="art_Designation" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="art_Description" Nullable="true" />
+          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="fam_Nom" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="unit_M_Abreviation" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="art_Abreviation" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="Select_Unite_Mesure_Result">
+          <Property Type="Int32" Name="unit_M_ID" Nullable="false" />
+          <Property Type="String" Name="unit_M_Nom" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="unit_M_Abreviation" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="unit_M_Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Article_Photo_By_Article_Result">
+          <Property Type="Int32" Name="pho_ID" Nullable="false" />
+          <Property Type="String" Name="pho_Path" Nullable="true" />
+          <Property Type="String" Name="pho_Nom" Nullable="true" />
+          <Property Type="String" Name="pho_Extension" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="pho_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Article_Info_By_ID_Result">
+          <Property Type="Int32" Name="art_ID" Nullable="false" />
+          <Property Type="String" Name="art_Designation" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="art_Description" Nullable="true" />
+          <Property Type="Int32" Name="svc_ID" Nullable="true" />
+          <Property Type="Int32" Name="fam_ID" Nullable="true" />
+          <Property Type="Int32" Name="unit_M_ID" Nullable="true" />
+          <Property Type="Boolean" Name="art_Status" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Article_Info">
           <Key>
             <PropertyRef Name="art_ID" />
           </Key>
           <Property Name="art_ID" Type="Int32" Nullable="false" />
           <Property Name="art_Designation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="art_Abreviation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="art_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="svc_ID" Type="Int32" />
           <Property Name="fam_ID" Type="Int32" />
@@ -1795,14 +1947,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="Select_vw_Article_Result">
-          <Property Type="Int32" Name="art_ID" Nullable="false" />
-          <Property Type="String" Name="art_Designation" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="art_Description" Nullable="true" />
-          <Property Type="String" Name="svc_Nom" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="fam_Nom" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="unit_M_Abreviation" Nullable="true" MaxLength="10" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2305,26 +2449,12 @@
           <FunctionImportMapping FunctionImportName="MaxID_Service" FunctionName="g_StockModel.Store.MaxID_Service" />
           <FunctionImportMapping FunctionImportName="MaxID_Unite" FunctionName="g_StockModel.Store.MaxID_Unite" />
           <FunctionImportMapping FunctionImportName="MaxID_Unite_Mesure" FunctionName="g_StockModel.Store.MaxID_Unite_Mesure" />
-          <FunctionImportMapping FunctionImportName="MaxID_Unite_Type" FunctionName="g_StockModel.Store.MaxID_Unite_Type" />
           <FunctionImportMapping FunctionImportName="MaxID_Utilisateur" FunctionName="g_StockModel.Store.MaxID_Utilisateur" />
           <FunctionImportMapping FunctionImportName="MaxID_Action" FunctionName="g_StockModel.Store.MaxID_Action" />
           <FunctionImportMapping FunctionImportName="Select_Armoire_By_ID" FunctionName="g_StockModel.Store.Select_Armoire_By_ID">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Count_vw_rayonnage" FunctionName="g_StockModel.Store.Count_vw_rayonnage" />
           <FunctionImportMapping FunctionImportName="Count_Rayonnage_By_Nom" FunctionName="g_StockModel.Store.Count_Rayonnage_By_Nom" />
-          <EntitySetMapping Name="Article_Info">
-            <EntityTypeMapping TypeName="g_StockModel.Article_Info">
-              <MappingFragment StoreEntitySet="Article_Info">
-                <ScalarProperty Name="art_Status" ColumnName="art_Status" />
-                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
-                <ScalarProperty Name="fam_ID" ColumnName="fam_ID" />
-                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
-                <ScalarProperty Name="art_Description" ColumnName="art_Description" />
-                <ScalarProperty Name="art_Designation" ColumnName="art_Designation" />
-                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Select_vw_Article" FunctionName="g_StockModel.Store.Select_vw_Article">
             <ResultMapping>
               <ComplexTypeMapping TypeName="g_StockModel.Select_vw_Article_Result">
@@ -2334,10 +2464,59 @@
                 <ScalarProperty Name="svc_Nom" ColumnName="svc_Nom" />
                 <ScalarProperty Name="fam_Nom" ColumnName="fam_Nom" />
                 <ScalarProperty Name="unit_M_Abreviation" ColumnName="unit_M_Abreviation" />
+                <ScalarProperty Name="art_Abreviation" ColumnName="art_Abreviation" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Validate_Utilisateur" FunctionName="g_StockModel.Store.Validate_Utilisateur" />
+          <FunctionImportMapping FunctionImportName="Delete_Unite_Mesure" FunctionName="g_StockModel.Store.Delete_Unite_Mesure" />
+          <FunctionImportMapping FunctionImportName="Insert_Unite_Mesure" FunctionName="g_StockModel.Store.Insert_Unite_Mesure" />
+          <FunctionImportMapping FunctionImportName="Select_Unite_Mesure" FunctionName="g_StockModel.Store.Select_Unite_Mesure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Unite_Mesure_Result">
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="unit_M_Nom" ColumnName="unit_M_Nom" />
+                <ScalarProperty Name="unit_M_Abreviation" ColumnName="unit_M_Abreviation" />
+                <ScalarProperty Name="unit_M_Status" ColumnName="unit_M_Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Update_Unite_Mesure" FunctionName="g_StockModel.Store.Update_Unite_Mesure" />
+          <FunctionImportMapping FunctionImportName="Delete_Article_Info" FunctionName="g_StockModel.Store.Delete_Article_Info" />
+          <FunctionImportMapping FunctionImportName="Insert_Article_Info" FunctionName="g_StockModel.Store.Insert_Article_Info" />
+          <FunctionImportMapping FunctionImportName="Update_Article_Info" FunctionName="g_StockModel.Store.Update_Article_Info" />
+          <FunctionImportMapping FunctionImportName="Count_Article_Info" FunctionName="g_StockModel.Store.Count_Article_Info" />
+          <FunctionImportMapping FunctionImportName="Delete_Article_Photo" FunctionName="g_StockModel.Store.Delete_Article_Photo" />
+          <FunctionImportMapping FunctionImportName="Insert_Article_Photo" FunctionName="g_StockModel.Store.Insert_Article_Photo" />
+          <FunctionImportMapping FunctionImportName="Select_Article_Photo_By_Article" FunctionName="g_StockModel.Store.Select_Article_Photo_By_Article">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="g_StockModel.Select_Article_Photo_By_Article_Result">
+                <ScalarProperty Name="pho_ID" ColumnName="pho_ID" />
+                <ScalarProperty Name="pho_Path" ColumnName="pho_Path" />
+                <ScalarProperty Name="pho_Nom" ColumnName="pho_Nom" />
+                <ScalarProperty Name="pho_Extension" ColumnName="pho_Extension" />
+                <ScalarProperty Name="pho_Description" ColumnName="pho_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Update_Article_Photo" FunctionName="g_StockModel.Store.Update_Article_Photo" />
+          <FunctionImportMapping FunctionImportName="Select_Article_Info_By_Designation" FunctionName="g_StockModel.Store.Select_Article_Info_By_Designation" />
+          <FunctionImportMapping FunctionImportName="Select_Article_Info_By_ID" FunctionName="g_StockModel.Store.Select_Article_Info_By_ID">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Article_Info">
+            <EntityTypeMapping TypeName="g_StockModel.Article_Info">
+              <MappingFragment StoreEntitySet="Article_Info">
+                <ScalarProperty Name="art_Status" ColumnName="art_Status" />
+                <ScalarProperty Name="unit_M_ID" ColumnName="unit_M_ID" />
+                <ScalarProperty Name="fam_ID" ColumnName="fam_ID" />
+                <ScalarProperty Name="svc_ID" ColumnName="svc_ID" />
+                <ScalarProperty Name="art_Description" ColumnName="art_Description" />
+                <ScalarProperty Name="art_Abreviation" ColumnName="art_Abreviation" />
+                <ScalarProperty Name="art_Designation" ColumnName="art_Designation" />
+                <ScalarProperty Name="art_ID" ColumnName="art_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
